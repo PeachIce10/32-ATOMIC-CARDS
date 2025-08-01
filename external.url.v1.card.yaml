@@ -1,0 +1,29 @@
+# ---------- Canonical Template Card ----------
+id         : external.url.v1
+humanLabel : External URL Field
+category   : EXTERNAL
+version    : 1
+
+ELEMENTS:
+  - Plain Text Field
+
+CUSTOM-INPUTS:
+  - regexPattern        : string
+  - verifyEndpointURL   : string | null
+  - timeoutMs           : int
+  - requireVerification : bool
+  - maskDisplayPattern  : string | null
+  - placeholder         : string
+  - defaultValue        : string | null
+  - required            : bool
+  - allowedProtocols    : string[]
+  - blocklistDomains    : string[]
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

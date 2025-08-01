@@ -1,0 +1,29 @@
+# ---------- Canonical Template Card ----------
+id         : media.file.v1
+humanLabel : File Upload
+category   : MEDIA
+version    : 1
+
+ELEMENTS:
+  - Drag-and-Drop File Upload
+
+CUSTOM-INPUTS:
+  - allowedMimeTypes   : string[]
+  - blockedExtensions  : string[]
+  - maxFileSizeMB      : int
+  - multiple           : bool
+  - maxFiles           : int
+  - minFiles           : int
+  - virusScanRequired  : bool
+  - encryptAtRest      : bool
+  - requireDescription : bool
+  - defaultFiles       : URL[]
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

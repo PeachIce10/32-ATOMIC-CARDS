@@ -1,0 +1,27 @@
+# ---------- Canonical Template Card ----------
+id         : ship.methodlist.v1
+humanLabel : Shipping Method List
+category   : SHIPPING
+version    : 1
+
+ELEMENTS:
+  - Radio List (standard)
+  - Radio List (compact)
+  - Option Card Selector (image tiles)
+
+CUSTOM-INPUTS:
+  - methods            : { id:string, label:string, rateMinor:int, carrier:string, etaDays:int }[]
+  - defaultMethodID    : string
+  - showETA            : bool
+  - allowPickUpLocation: bool
+  - requireSignatureOption : bool
+  - showInsuranceOption: bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

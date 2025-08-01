@@ -1,0 +1,27 @@
+# ---------- Canonical Template Card ----------
+id         : colour.picker.v1
+humanLabel : Colour Dial
+category   : COLOUR
+version    : 1
+
+ELEMENTS:
+  - Full-Spectrum Colour Dial
+
+CUSTOM-INPUTS:
+  - colourSpace        : enum “sRGB / DisplayP3 / AdobeRGB / CMYK”
+  - allowAlpha         : bool
+  - allowPaletteHistory: bool
+  - defaultColour      : HEX | null
+  - required           : bool
+  - showEyedropper     : bool
+  - formatOptions      : enum[]  # HEX / RGB / HSL
+  - snapToSwatchSet    : bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

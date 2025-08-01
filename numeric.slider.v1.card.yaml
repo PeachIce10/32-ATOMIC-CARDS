@@ -1,0 +1,34 @@
+# ---------- Canonical Template Card ----------
+id         : numeric.slider.v1
+humanLabel : Slider (Number)
+category   : NUMERIC
+version    : 1
+
+ELEMENTS:
+  - Single-Value Slider
+  - Dual-Range Slider
+  - Price-Range Slider
+  - Weight Slider
+
+CUSTOM-INPUTS:
+  - canonicalUnit : string
+  - min           : number
+  - max           : number
+  - step          : number
+  - precision     : int
+  - dualRange     : bool
+  - defaultLow    : number
+  - defaultHigh   : number
+  - required      : bool
+  - showTicks     : bool
+  - showInputField: bool
+  - orientation   : enum “horizontal / vertical”
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

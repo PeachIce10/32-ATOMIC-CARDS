@@ -1,0 +1,32 @@
+# ---------- Canonical Template Card ----------
+id         : numeric.vector.v1
+humanLabel : Vector Number (2 – 3 axes)
+category   : NUMERIC
+version    : 1
+
+ELEMENTS:
+  - Number Stepper × 2/3 (side-by-side)
+  - Numeric Text Field × 2/3
+
+CUSTOM-INPUTS:
+  - shape            : enum “VECTOR2 / VECTOR3”
+  - axisLabels       : string[]
+  - axisUnits        : string[]
+  - min              : number[]
+  - max              : number[]
+  - step             : number[]
+  - precision        : int[]
+  - defaultValues    : number[]
+  - required         : bool
+  - displayPrecision : int
+  - roundingMode     : enum “none / floor / ceil / round”
+  - placeholder      : number[]
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

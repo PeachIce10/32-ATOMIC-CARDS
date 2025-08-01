@@ -1,0 +1,29 @@
+# ---------- Canonical Template Card ----------
+id         : geo.point.v1
+humanLabel : Geo Point (Lat/Lon)
+category   : GEO
+version    : 1
+
+ELEMENTS:
+  - Map Pin Picker  # future element variant
+
+CUSTOM-INPUTS:
+  - allowedCountries     : string[]
+  - blockedCountries     : string[]
+  - allowedRegions       : string[]
+  - coordPrecision       : int
+  - defaultLatLon        : { lat:number, lon:number }
+  - requirePostalCode    : bool
+  - suggestionBias       : { lat:number, lon:number, radiusKm:number }
+  - showMyLocationButton : bool
+  - mapProvider          : enum
+  - snapToRoads          : bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

@@ -1,0 +1,31 @@
+# ---------- Canonical Template Card ----------
+id         : media.videoaudio.v1
+humanLabel : Video / Audio Upload
+category   : MEDIA
+version    : 1
+
+ELEMENTS:
+  - Drag-and-Drop File Upload
+  - Media-Viewer Selector
+
+CUSTOM-INPUTS:
+  - allowedMimeTypes  : string[]
+  - maxFileSizeMB     : int
+  - minFileSizeKB     : int
+  - maxDurationSec    : int
+  - minDurationSec    : int
+  - maxResolution     : { w:int, h:int }
+  - frameRateMax      : int
+  - multiple          : bool
+  - requireCaptions   : bool
+  - requirePoster     : bool
+  - defaultVideos     : URL[]
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

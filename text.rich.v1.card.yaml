@@ -1,0 +1,23 @@
+# ---------- Canonical Template Card ----------
+id         : text.rich.v1
+humanLabel : Rich Text / Markdown
+category   : TEXT
+version    : 1
+
+ELEMENTS:
+  - Plain Text Field (rich-text mode)
+
+CUSTOM-INPUTS:
+  - allowedMarks   : string[]
+  - allowedNodes   : string[]
+  - maxCharacters  : int
+  - placeholder    : string
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

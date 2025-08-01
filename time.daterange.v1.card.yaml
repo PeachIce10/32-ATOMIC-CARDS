@@ -1,0 +1,30 @@
+# ---------- Canonical Template Card ----------
+id         : time.daterange.v1
+humanLabel : Date Range Picker
+category   : DATE_TIME
+version    : 1
+
+ELEMENTS:
+  - Date-Range Picker
+  - Embedded Date-Range Picker
+
+CUSTOM-INPUTS:
+  - minDate        : ISO8601
+  - maxDate        : ISO8601
+  - minGapDays     : int
+  - maxGapDays     : int
+  - defaultStart   : ISO8601 | null
+  - defaultEnd     : ISO8601 | null
+  - required       : bool
+  - disabledWeekdays : int[]
+  - disabledDates  : ISO8601[]
+  - displayFormat  : string
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

@@ -1,0 +1,30 @@
+# ---------- Canonical Template Card ----------
+id         : numeric.scalar.v1
+humanLabel : Scalar Number
+category   : NUMERIC
+version    : 1
+
+ELEMENTS:
+  - Number Stepper
+  - Numeric Text Field
+  - Spin-Box
+  - Inline Quantity Badges
+  - Inline Quantity-Stepper (Dropdown add-on)
+
+CUSTOM-INPUTS:
+  - canonicalUnit : string
+  - min           : number
+  - max           : number
+  - step          : number
+  - precision     : int
+  - defaultValue  : number | null
+  - required      : bool
+
+# Buckets deferred to Pass B — mark clearly so you remember
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot   # drop a Figma link or image when you have one

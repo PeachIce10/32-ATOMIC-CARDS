@@ -1,0 +1,29 @@
+# ---------- Canonical Template Card ----------
+id         : time.date.v1
+humanLabel : Date Picker
+category   : DATE_TIME
+version    : 1
+
+ELEMENTS:
+  - Date Picker
+  - Embedded Date Picker (inside Dropdown)
+
+CUSTOM-INPUTS:
+  - minDate        : ISO8601
+  - maxDate        : ISO8601
+  - granularity    : enum “day / week”
+  - defaultDate    : ISO8601 | null
+  - required       : bool
+  - disabledWeekdays : int[]
+  - disabledDates  : ISO8601[]
+  - displayFormat  : string
+  - showTimezone   : bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

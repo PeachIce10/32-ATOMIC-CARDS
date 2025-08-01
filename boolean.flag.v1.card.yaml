@@ -1,0 +1,24 @@
+# ---------- Canonical Template Card ----------
+id         : boolean.flag.v1
+humanLabel : Boolean Flag (Free)
+category   : BOOLEAN
+version    : 1
+
+ELEMENTS:
+  - Checkbox
+  - Toggle Switch
+  - Yes/No Button Pair
+
+CUSTOM-INPUTS:
+  - defaultChecked : bool
+  - required       : bool
+  - ariaDescription: string
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

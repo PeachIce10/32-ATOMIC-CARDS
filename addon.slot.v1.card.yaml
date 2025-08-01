@@ -1,0 +1,26 @@
+# ---------- Canonical Template Card ----------
+id         : addon.slot.v1
+humanLabel : Service Slot Selector
+category   : ADDON
+version    : 1
+
+ELEMENTS:
+  - Date Picker + Time Picker combo
+  - Dual-Range Slider (slot time window)
+
+CUSTOM-INPUTS:
+  - slotLengthMin    : int
+  - leadTimeHours    : int
+  - providerResourceID : string
+  - capacityPerSlot  : int
+  - priceMinor       : int
+  - taxClass         : enum “service / digital / none”
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

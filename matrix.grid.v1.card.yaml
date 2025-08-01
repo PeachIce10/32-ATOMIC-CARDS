@@ -1,0 +1,29 @@
+# ---------- Canonical Template Card ----------
+id         : matrix.grid.v1
+humanLabel : Matrix Grid
+category   : MATRIX
+version    : 1
+
+ELEMENTS:
+  - Size × Colour Matrix Selector
+
+CUSTOM-INPUTS:
+  - rowAxisLabel        : string
+  - columnAxisLabel     : string
+  - rowValues           : string[]
+  - columnValues        : string[]
+  - allowDuplicates     : bool
+  - maxCellsSelectable  : int | null
+  - defaultSelections   : [row,col][]
+  - required            : bool
+  - cellPriceOverrides  : { [row,col]: int }
+  - inventoryMap        : { [row,col]: int }
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

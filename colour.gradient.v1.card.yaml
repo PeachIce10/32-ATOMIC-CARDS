@@ -1,0 +1,25 @@
+# ---------- Canonical Template Card ----------
+id         : colour.gradient.v1
+humanLabel : Gradient / Palette Builder
+category   : COLOUR
+version    : 1
+
+ELEMENTS:
+  - Full-Spectrum Colour Dial (gradient mode)
+
+CUSTOM-INPUTS:
+  - gradientKind  : enum “linear / radial”
+  - minStops      : int
+  - maxStops      : int
+  - defaultStops  : { colour: HEX, pos%: float }[]
+  - direction     : string
+  - allowAlpha    : bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

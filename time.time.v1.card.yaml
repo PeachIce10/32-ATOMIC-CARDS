@@ -1,0 +1,29 @@
+# ---------- Canonical Template Card ----------
+id         : time.time.v1
+humanLabel : Time Picker (HH:MM)
+category   : DATE_TIME
+version    : 1
+
+ELEMENTS:
+  - Time Picker
+  - Mobile Wheel Picker
+
+CUSTOM-INPUTS:
+  - minTime       : "HH:mm"
+  - maxTime       : "HH:mm"
+  - stepMinutes   : int
+  - defaultTime   : "HH:mm" | null
+  - required      : bool
+  - showSeconds   : bool
+  - displayFormat : string
+  - timezone      : string
+  - snapToStep    : bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

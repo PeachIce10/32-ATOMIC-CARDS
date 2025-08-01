@@ -1,0 +1,30 @@
+# ---------- Canonical Template Card ----------
+id         : text.single.v1
+humanLabel : Single-Line Text
+category   : TEXT
+version    : 1
+
+ELEMENTS:
+  - Plain Text Field
+
+CUSTOM-INPUTS:
+  - minLength      : int
+  - maxLength      : int
+  - regexPattern   : string
+  - filters        : enum[]
+  - transforms     : enum[]
+  - placeholder    : string
+  - defaultValue   : string | null
+  - required       : bool
+  - inputMask      : string | null
+  - autoCapitalize : bool
+  - spellCheck     : bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

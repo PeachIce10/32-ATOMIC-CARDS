@@ -1,0 +1,25 @@
+# ---------- Canonical Template Card ----------
+id         : text.array.v1
+humanLabel : Tag Array
+category   : TEXT
+version    : 1
+
+ELEMENTS:
+  - Chip / Tag Multi-Select
+
+CUSTOM-INPUTS:
+  - minItems      : int
+  - maxItems      : int
+  - itemMaxLength : int
+  - unique        : bool
+  - delimiter     : string
+  - defaultValues : string[]
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

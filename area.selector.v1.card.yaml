@@ -1,0 +1,38 @@
+# ---------- Canonical Template Card ----------
+id         : area.selector.v1
+humanLabel : Image Area Selector
+category   : AREA
+version    : 1
+
+ELEMENTS:
+  - Image Hot-Spot Selector
+
+CUSTOM-INPUTS:
+  - shapeAllowed     : enum[]
+  - coordSpace       : enum “PIXEL / PERCENT”
+  - minWidthPx       : int
+  - minHeightPx      : int
+  - maxWidthPx       : int
+  - maxHeightPx      : int
+  - minAreaPct       : float
+  - maxAreaPct       : float
+  - aspectRatioLock  : string | null
+  - allowRotation    : bool
+  - rotationSnapDeg  : int
+  - maxVertices      : int
+  - multipleRegions  : bool
+  - allowOverlap     : bool
+  - snapGridPx       : int | null
+  - defaultShapes    : object[]
+  - allowMaskFile    : bool
+  - maskAllowedMime  : string[]
+  - maskMaxSizeMB    : int
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

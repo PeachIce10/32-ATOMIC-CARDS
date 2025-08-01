@@ -1,0 +1,28 @@
+# ---------- Canonical Template Card ----------
+id         : geo.area.v1
+humanLabel : Geo Area (Circle/Box/Poly/Polyline)
+category   : GEO
+version    : 1
+
+ELEMENTS:
+  - Map Circle/Polygon Drawer
+  - Map Polyline Drawer  # polyline variant (future element)
+
+CUSTOM-INPUTS:
+  - shapeKind   : enum “CIRCLE / BBOX / POLYGON / POLYLINE”
+  - minRadiusM  : number
+  - maxRadiusM  : number
+  - maxVertices : int
+  - minAreaKm2  : number
+  - maxAreaKm2  : number
+  - maxLengthKm : number
+  - defaultShape: object
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

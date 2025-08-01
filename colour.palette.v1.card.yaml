@@ -1,0 +1,26 @@
+# ---------- Canonical Template Card ----------
+id         : colour.palette.v1
+humanLabel : Colour Palette (2-N)
+category   : COLOUR
+version    : 1
+
+ELEMENTS:
+  - Chip/Tag Multi-Select (colour chips)
+  - Carousel Tile Selector
+
+CUSTOM-INPUTS:
+  - multiSelect        : bool
+  - minColours         : int
+  - maxColours         : int
+  - requireUnique      : bool
+  - minContrastDeltaE  : number
+  - defaultPalette     : HEX[]
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

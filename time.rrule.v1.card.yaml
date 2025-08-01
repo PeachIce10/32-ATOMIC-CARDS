@@ -1,0 +1,23 @@
+# ---------- Canonical Template Card ----------
+id         : time.rrule.v1
+humanLabel : Recurring Schedule
+category   : DATE_TIME
+version    : 1
+
+ELEMENTS:
+  - Dropdown + Checkbox Pills (weekday chips) (recurrence UI)
+
+CUSTOM-INPUTS:
+  - rruleTemplate : string
+  - allowFreq     : string[]
+  - defaultRule   : string
+  - required      : bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

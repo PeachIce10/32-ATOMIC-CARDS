@@ -1,0 +1,25 @@
+# ---------- Canonical Template Card ----------
+id         : external.id.v1
+humanLabel : External ID Field
+category   : EXTERNAL
+version    : 1
+
+ELEMENTS:
+  - Plain Text Field
+
+CUSTOM-INPUTS:
+  - platformCode       : string
+  - regexPattern       : string
+  - checksumAlgo       : string
+  - verifyEndpointURL  : string
+  - maskDisplayPattern : string | null
+  - required           : bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

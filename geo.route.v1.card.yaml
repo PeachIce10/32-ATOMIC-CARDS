@@ -1,0 +1,23 @@
+# ---------- Canonical Template Card ----------
+id         : geo.route.v1
+humanLabel : Geo Route (Polyline)
+category   : GEO
+version    : 1
+
+ELEMENTS:
+  - Map Polyline Drawer (future element)
+
+CUSTOM-INPUTS:
+  - maxVertices   : int
+  - maxLengthKm   : number
+  - snapToRoads   : bool
+  - allowElevation: bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

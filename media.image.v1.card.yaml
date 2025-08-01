@@ -1,0 +1,38 @@
+# ---------- Canonical Template Card ----------
+id         : media.image.v1
+humanLabel : Image Upload
+category   : MEDIA
+version    : 1
+
+ELEMENTS:
+  - Drag-and-Drop File Upload
+  - Media-Viewer Selector (preview)
+
+CUSTOM-INPUTS:
+  - allowedMimeTypes   : string[]
+  - blockedExtensions  : string[]
+  - maxFileSizeMB      : int
+  - minFileSizeKB      : int
+  - multiple           : bool
+  - maxFiles           : int
+  - minFiles           : int
+  - requireAltText     : bool
+  - requireCaption     : bool
+  - minWidthPx         : int
+  - maxWidthPx         : int
+  - minHeightPx        : int
+  - maxHeightPx        : int
+  - aspectRatio        : string | null
+  - allowCrop          : bool
+  - allowCompression   : bool
+  - derivativePolicy   : enum “none / thumb / responsive”
+  - defaultImages      : URL[]
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

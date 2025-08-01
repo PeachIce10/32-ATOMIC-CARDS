@@ -1,0 +1,46 @@
+# ---------- Canonical Template Card ----------
+id         : text.enum.v1
+humanLabel : Enumerated Choice
+category   : TEXT
+version    : 1
+
+ELEMENTS:
+  - Dropdown (Single-Select)
+  - Dropdown (Multi-Select)
+  - Dropdown (Searchable)
+  - Dropdown (Sectioned)
+  - Dropdown (Cascading)
+  - Dropdown (Quick-Filter)
+  - Dropdown (Clear-All)
+  - Check-Box Pills Style
+  - Icon-Tile Rows
+  - Radio List (Standard)
+  - Radio List (Compact)
+  - Radio List (Segmented Button Group)
+  - Radio List (Subscription Plan Tabs)
+  - Segmented Button Group
+  - Subscription Plan Tabs
+  - Tier Button Set
+
+CUSTOM-INPUTS:
+  - allowedValues  : string[]
+  - multiSelect    : bool
+  - searchable     : bool
+  - sectioned      : bool
+  - maxValues      : int | null
+  - allowCustomValue : bool
+  - defaultValues  : string[]
+  - required       : bool
+  - optionImages   : bool
+  - optionIcons    : bool
+  - showClearAll   : bool
+  - allowReorder   : bool
+
+# Buckets deferred to Pass B
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : TODO_LATER
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot
