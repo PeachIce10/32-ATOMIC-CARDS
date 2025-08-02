@@ -1,20 +1,21 @@
 # ---------- Canonical Template Card ----------
-id         : colour.gradient.v1
-humanLabel : Gradient / Palette Builder
-category   : COLOUR
+id         : color.palette.v1
+humanLabel : Color Palette (2-N)
+category   : COLOR
 version    : 1
 canBeWrappedBy : addon.wrapper.v1
 
 ELEMENTS:
-  - Full-Spectrum Colour Dial (gradient mode)
+  - Chip/Tag Multi-Select (colour chips)
+  - Carousel Tile Selector
 
 CUSTOM-INPUTS:
-  - gradientKind  : enum “linear / radial”
-  - minStops      : int
-  - maxStops      : int
-  - defaultStops  : { colour: HEX, pos%: float }[]
-  - direction     : string
-  - allowAlpha    : bool
+  - multiSelect        : bool
+  - minColours         : int
+  - maxColours         : int
+  - requireUnique      : bool
+  - minContrastDeltaE  : number
+  - defaultPalette     : HEX[]
 
 # ---- Buckets drafted in Pass A (schema fixed; content TBD) ----
 LAYOUT  : TODO_LATER

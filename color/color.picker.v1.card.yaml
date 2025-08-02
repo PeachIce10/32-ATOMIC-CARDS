@@ -1,21 +1,22 @@
 # ---------- Canonical Template Card ----------
-id         : colour.palette.v1
-humanLabel : Colour Palette (2-N)
-category   : COLOUR
+id         : color.picker.v1
+humanLabel : Color Dial
+category   : COLOR
 version    : 1
 canBeWrappedBy : addon.wrapper.v1
 
 ELEMENTS:
-  - Chip/Tag Multi-Select (colour chips)
-  - Carousel Tile Selector
+  - Full-Spectrum Colour Dial
 
 CUSTOM-INPUTS:
-  - multiSelect        : bool
-  - minColours         : int
-  - maxColours         : int
-  - requireUnique      : bool
-  - minContrastDeltaE  : number
-  - defaultPalette     : HEX[]
+  - colourSpace        : enum “sRGB / DisplayP3 / AdobeRGB / CMYK”
+  - allowAlpha         : bool
+  - allowPaletteHistory: bool
+  - defaultColour      : HEX | null
+  - required           : bool
+  - showEyedropper     : bool
+  - formatOptions      : enum[]  # HEX / RGB / HSL
+  - snapToSwatchSet    : bool
 
 # ---- Buckets drafted in Pass A (schema fixed; content TBD) ----
 LAYOUT  : TODO_LATER

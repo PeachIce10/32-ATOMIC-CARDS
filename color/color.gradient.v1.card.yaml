@@ -1,29 +1,20 @@
 # ---------- Canonical Template Card ----------
-id         : colour.swatch.v1
-humanLabel : Colour Swatch (Single)
-category   : COLOUR
+id         : color.gradient.v1
+humanLabel : Gradient / Palette Builder
+category   : COLOR
 version    : 1
 canBeWrappedBy : addon.wrapper.v1
 
 ELEMENTS:
-  - Colour Swatch Chip
-  - Text-Label (Size) Swatch
-  - Pattern Swatch
-  - Image/Thumbnail Swatch
-  - Icon Swatch
-  - Carousel Tile Selector
-  - Thumbnail-Carousel Selector
+  - Full-Spectrum Colour Dial (gradient mode)
 
 CUSTOM-INPUTS:
-  - allowedColours   : HEX[]
-  - swatchSetPreset  : string | null
-  - allowCustomInput : bool
-  - allowAlpha       : bool
-  - defaultColour    : HEX | null
-  - required         : bool
-  - showLabels       : bool
-  - paletteLayout    : enum “row / grid / stack”
-  - swatchSizePx     : int
+  - gradientKind  : enum “linear / radial”
+  - minStops      : int
+  - maxStops      : int
+  - defaultStops  : { colour: HEX, pos%: float }[]
+  - direction     : string
+  - allowAlpha    : bool
 
 # ---- Buckets drafted in Pass A (schema fixed; content TBD) ----
 LAYOUT  : TODO_LATER

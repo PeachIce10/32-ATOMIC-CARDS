@@ -1,22 +1,29 @@
 # ---------- Canonical Template Card ----------
-id         : colour.picker.v1
-humanLabel : Colour Dial
-category   : COLOUR
+id         : color.swatch.v1
+humanLabel : Color Swatch (Single)
+category   : COLOR
 version    : 1
 canBeWrappedBy : addon.wrapper.v1
 
 ELEMENTS:
-  - Full-Spectrum Colour Dial
+  - Colour Swatch Chip
+  - Text-Label (Size) Swatch
+  - Pattern Swatch
+  - Image/Thumbnail Swatch
+  - Icon Swatch
+  - Carousel Tile Selector
+  - Thumbnail-Carousel Selector
 
 CUSTOM-INPUTS:
-  - colourSpace        : enum “sRGB / DisplayP3 / AdobeRGB / CMYK”
-  - allowAlpha         : bool
-  - allowPaletteHistory: bool
-  - defaultColour      : HEX | null
-  - required           : bool
-  - showEyedropper     : bool
-  - formatOptions      : enum[]  # HEX / RGB / HSL
-  - snapToSwatchSet    : bool
+  - allowedColours   : HEX[]
+  - swatchSetPreset  : string | null
+  - allowCustomInput : bool
+  - allowAlpha       : bool
+  - defaultColour    : HEX | null
+  - required         : bool
+  - showLabels       : bool
+  - paletteLayout    : enum “row / grid / stack”
+  - swatchSizePx     : int
 
 # ---- Buckets drafted in Pass A (schema fixed; content TBD) ----
 LAYOUT  : TODO_LATER
