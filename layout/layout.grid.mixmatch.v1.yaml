@@ -1,0 +1,46 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.grid.mixmatch.v1
+title: Mix-and-Match Kit Grid
+version: 1
+
+description: >
+  Inserts a drag-and-drop slot grid inside the PDP so a shopper can build
+  a kit (e.g., 6-pack of snacks, custom PC parts).  Works equally well
+  for fixed rows × cols or a freeform masonry grid.  A header/footer
+  summary is optional.
+
+# --------- Structural slots -------------------------------------------------
+# Each cell hosts one inner Atomic Card; the header/footer are auto-rendered.
+slots:
+  - kitHeader # optional progress / subtotal bar
+  - gridCell(*) # “*” means dynamically repeated for row × col
+  - upsellRail # optional accessory rail below grid
+  - kitFooter # “Add kit to cart” summary
+
+# --------- Merchant knobs ---------------------------------------------------
+merchantKnobs:
+  rows: int # visible rows (0 = fluid)
+  columns: int # visible columns (0 = fluid)
+  allowDuplicates: bool # can repeat same item
+  requireComplete: bool # block checkout until all cells filled
+  showProgressBar: bool #  "3 / 6 items chosen"
+  stickyHeader: bool # pin kitHeader on scroll
+  emptySlotIcon: string | null # asset key for placeholder SVG
+  dragEnabled: bool # enable drag-to-reorder
+  slotPriceMode: enum [include, showDelta] # price display in slots
+
+# --------- Compatible Atomic Cards ------------------------------------------
+compatibleCards:
+  - display.optioncard.v1
+  - colour.swatch.v1
+  - text.enum.v1
+  - numeric.slider.v1
+  - numeric.scalar.v1
+  - addon.checkbox.v1
+  - boolean.flag.v1
+  # Add others as kit design evolves
+
+# --------- Pass-B polish layers ---------------------------------------------
+designTokensRef: TODO_token_link # grid gutter, placeholder colour
+a11yNotes: {} # drag handle roles, live-region updates
+analyticsEvents: [] # e.g. kitSlotFilled, kitCompleted

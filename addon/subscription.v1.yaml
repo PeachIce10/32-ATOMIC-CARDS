@@ -1,21 +1,23 @@
 # ---------- Canonical Template Card ----------
-id         : media.model3d.v1
-humanLabel : 3-D Model Upload
-category   : MEDIA
-version    : 1
-canBeWrappedBy : addon.wrapper.v1
+id: subscription.v1
+humanLabel: Subscription Add-On
+category: ADDON
+version: 1
+canBeWrappedBy: addon.wrapper.v1
 
 ELEMENTS:
-  - 360-Degree Viewer (angle picker)
-  - Drag-and-Drop File Upload
+  - Checkbox / Toggle Switch
+  - Subscription Plan Tabs
 
 CUSTOM-INPUTS:
-  - allowedMimeTypes : string[]
-  - maxFileSizeMB    : int
-  - maxTriangles     : int
-  - requireManifold  : bool
-  - units            : enum “mm / cm / in”
-  - defaultModels    : URL[]
+  - cadence: enum “weekly / monthly / annual”
+  - baseFeeMinor: int
+  - firstBillDateRule: string
+  - minTerms: int
+  - maxTerms: int
+  - priceMinor: int # optional sign-up fee
+  - linkedProductID: string | null
+  - linkedServiceID: string | null
 
 # ---- Buckets drafted in Pass A (schema fixed; content TBD) ----
 LAYOUT  : TODO_LATER

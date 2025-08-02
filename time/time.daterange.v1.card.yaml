@@ -20,11 +20,25 @@ CUSTOM-INPUTS:
   - disabledDates  : ISO8601[]
   - displayFormat  : string
 
-# Buckets deferred to Pass B
-LAYOUT   : TODO_LATER
-RULES    : TODO_LATER
-ACTIONS  : TODO_LATER
-ASSETS   : TODO_LATER
-
+# ---- Buckets drafted in Pass A (schema fixed; content TBD) ----
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits                  # from rules_anchors.yaml
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger        # []
+  postSaveHook : *BasePostSave          # null
+ASSETS  : TODO_LATER
 CUSTOMER-UI-SNAPSHOT:
-  ref: TODO_snapshot
+  ref : TODO_snapshot                   # drop a Figma link or PNG in Pass B
+
+# ---- Pass-B polish placeholders (non-contract extras) ----
+designTokensRef : TODO_token_link       # spacing, colour roles, etc.
+a11yNotes:
+  ariaRole      : TODO
+  labelStrategy : TODO
+analyticsEvents : []                    # e.g. [fieldFocused, valueFinalised]
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}                    # localisation quirks
+complianceTags  : []                    # GDPR / PCI flags
+stateTokensRef  : TODO_state_link       # hover / focus / disabled

@@ -1,0 +1,38 @@
+# ---------- universal defaults ----------
+BaseEmits: &BaseEmits []
+BaseListens: &BaseListens []
+
+# ---------- common visibility / requirement rules ----------
+FieldVisReqRules: &FieldVisReqRules
+  emits:
+    - valueChanged
+  listens:
+    - visibleIf
+    - requiredIf
+
+# ---------- price / inventory side-effects ----------
+PriceInvRules: &PriceInvRules
+  emits:
+    - priceDeltaChanged
+    - inventoryCheckNeeded
+  listens:
+    - repriceIf
+    - reserveStockIf
+
+# ---------- matrix-specific ----------
+MatrixRules: &MatrixRules
+  emits:
+    - cellSelected
+    - cellUnavailable
+  listens:
+    - disableCellIf
+    - preselectCellIf
+
+# ---------- add-on wrapper ----------
+AddOnWrapperRules: &AddOnWrapperRules
+  emits:
+    - addOnAttached
+    - addOnRemoved
+  listens:
+    - attachIf
+    - detachIf

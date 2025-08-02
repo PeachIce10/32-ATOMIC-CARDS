@@ -1,21 +1,25 @@
 # ---------- Canonical Template Card ----------
-id         : media.model3d.v1
-humanLabel : 3-D Model Upload
-category   : MEDIA
-version    : 1
+id         : display.optioncard.v1
+humanLabel : Option Card Selector
+category   : ADDON            
 canBeWrappedBy : addon.wrapper.v1
 
 ELEMENTS:
-  - 360-Degree Viewer (angle picker)
-  - Drag-and-Drop File Upload
+  - Image-plus-Copy Card Tiles
 
 CUSTOM-INPUTS:
-  - allowedMimeTypes : string[]
-  - maxFileSizeMB    : int
-  - maxTriangles     : int
-  - requireManifold  : bool
-  - units            : enum “mm / cm / in”
-  - defaultModels    : URL[]
+  - cardList          : { id:string, label:string, subCopy:string,
+                          imageURL:URL, priceDeltaMinor:int }[]
+  - multiSelect       : bool
+  - maxSelect         : int | null
+  - minSelect         : int | null
+  - defaultCardIDs    : string[]
+  - required          : bool
+  - showAsEqualHeight : bool
+  - orientation       : enum “row / column / grid”
+  - priceMinor        : int                      # optional flat fee
+  - linkedProductID   : string | null
+  - linkedServiceID   : string | null
 
 # ---- Buckets drafted in Pass A (schema fixed; content TBD) ----
 LAYOUT  : TODO_LATER

@@ -1,0 +1,45 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.sitewide.kit.stickyheader.v1
+title: Site-wide Kit / Bundle with Sticky Progress Header
+version: 1
+
+description: >
+  Replaces the normal PDP with a catalogue-style kit shell that persists
+  across multiple product pages.  A sticky header tracks the shopper’s
+  progress (“0 / 6 Juices selected”) and stays visible while they browse
+  and add items.
+
+# --------- Structural slots -----------------------------------------
+# Cards (or whole PDPs) are dragged into these slots by the page builder
+slots:
+  - kitHeader # sticky progress bar (auto-renders)
+  - kitGrid # grid of selectable bundle items
+  - upsellRail # optional accessory rail below grid
+  - kitFooter # summary / add-bundle-to-cart button
+
+# --------- Merchant knobs -------------------------------------------
+merchantKnobs:
+  slotTargetCount: int # e.g. 6 → “0 / 6 selected”
+  allowDuplicates: bool # whether shopper can pick same item twice
+  headerStyle: enum [bar, badge] # progress bar vs pill badge
+  showSubtotal: bool # include running price in header
+  enableCrossSell: bool # turn on upsellRail slot
+  mobileCollapse: bool # collapse grid into accordion on mobile
+
+# --------- Compatible Atomic Cards ----------------------------------
+compatibleCards:
+  - numeric.scalar.v1
+  - numeric.slider.v1
+  - text.enum.v1
+  - colour.swatch.v1
+  - display.optioncard.v1
+  - addon.checkbox.v1
+  - addon.slot.v1
+  - addon.subscription.v1
+  - boolean.flag.v1
+  # add others as the kit design evolves
+
+# --------- Pass-B polish layers -------------------------------------
+designTokensRef: TODO_token_link # header colours, bar height
+a11yNotes: {} # roles, progress updates
+analyticsEvents: [] # e.g. kitItemAdded, kitComplete

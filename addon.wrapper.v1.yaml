@@ -1,0 +1,30 @@
+# ---------- Canonical Template Card ----------
+id         : addon.wrapper.v1
+humanLabel : Add-on Wrapper
+category   : ADDON
+version    : 1
+
+# This card *wraps* any base Atomic Card.
+ELEMENTS:
+  - rendersInnerCard    # mounts the UI defined by innerCardRef
+
+CUSTOM-INPUTS:
+  # ---- add-on linkage knobs (exactly one purpose per wrapper) ----
+  priceMinor        : int             # flat surcharge in *minor* units; 0 = free
+  linkedProductID   : string | null   # physical accessory/product SKU    (optional)
+  linkedServiceID   : string | null   # intangible plan / warranty / service (optional)
+
+  # ---- wrapper behaviour knobs ----
+  defaultChecked    : bool            # pre-select the add-on?
+  required          : bool            # force selection?
+  showPriceBadge    : bool            # render "+ $X" pill next to widget
+  innerCardRef      : string          # ID of the Atomic Card being wrapped
+                                        # e.g. "text.single.v1"
+
+LAYOUT   : TODO_LATER
+RULES    : TODO_LATER
+ACTIONS  : []              # stays empty until you add conditional side-effects
+ASSETS   : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref: TODO_snapshot

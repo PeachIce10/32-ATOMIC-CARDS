@@ -1,0 +1,43 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.modal.quickadd.v1
+title: Quick-Add Modal (Collection Pop-over)
+version: 1
+
+description: >
+  Launches a compact configuration modal when a shopper clicks “Quick
+  Add” from a product card on collection or search pages.  Lets them pick
+  key options without leaving the current page; on Add-to-Cart the modal
+  closes and the shopper stays in-context.
+
+# --------- Structural slots -----------------------------------------
+slots:
+  - modalHeader # product title, price, close “×”
+  - optionPanel # hosts Atomic Cards for required options
+  - upsellRail # optional accessory rail inside modal
+  - modalFooter # qty, subtotal, Add-to-Cart button
+
+# --------- Merchant knobs -------------------------------------------
+merchantKnobs:
+  includeAccessories: bool # show upsellRail slot
+  maxHeightPct: int # viewport % (e.g. 80)
+  showHeroImage: bool # top hero inside header
+  autoOpenIfOnlyOne: bool # skip modal if no options needed
+  rememberQty: bool # persist qty per product
+  closeOnAddToCart: bool # true = auto-dismiss after ATC
+  animationStyle: enum [zoom, slideUp, fade]
+
+# --------- Compatible Atomic Cards ----------------------------------
+compatibleCards:
+  - numeric.scalar.v1
+  - numeric.slider.v1
+  - text.enum.v1
+  - colour.swatch.v1
+  - addon.checkbox.v1
+  - boolean.flag.v1
+  - display.optioncard.v1
+  # add others as modal UX evolves
+
+# --------- Pass-B polish placeholders -------------------------------
+designTokensRef: TODO_token_link # modal elevation, padding, backdrop
+a11yNotes: {} # focus trap, aria-modal, escape key
+analyticsEvents: [] # e.g. quickAddOpened, quickAddATC

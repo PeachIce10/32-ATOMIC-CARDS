@@ -1,0 +1,36 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.carousel.parallax.v1
+title: Parallax / Cover-Flow Carousel
+version: 1
+
+description: >
+  Hosts a horizontal media carousel that applies a depth-scroll parallax
+  (or Cover-Flow tilt) effect as the shopper swipes or scrolls.  Commonly
+  used for lifestyle hero images, feature call-outs, or variant image
+  reels.
+
+# --------- Structural slots -----------------------------------------
+slots:
+  - slide(*) # one slot per media slide (image / video / 3-D)
+
+# --------- Merchant knobs -------------------------------------------
+merchantKnobs:
+  effectStyle: enum [parallax, coverflow] # depth vs tilt
+  slidesPerView: int # e.g. 1‒5 visible
+  loopSlides: bool # infinite scroll
+  autoplay: bool # auto-advance slides
+  autoplayDelayMs: int # delay between slides
+  snapAlignment: enum [center, start] # snap point
+  showNavArrows: bool # ← / → arrows
+  showPaginationDots: bool # dot indicators
+  maxHeightPx: int | null # clamp height
+  enableZoom: bool # tap to lightbox
+  mobileGesture: enum [swipe, scroll] # preferred input
+
+# --------- Compatible Atomic Cards ----------------------------------
+compatibleCards: [] # media comes from product Assets, not option cards
+
+# --------- Pass-B polish placeholders -------------------------------
+designTokensRef: TODO_token_link # slide gap, shadow, border-radius
+a11yNotes: {} # role="region", aria-live for autoplay
+analyticsEvents: [] # e.g. carouselSlideViewed, autoplayPaused

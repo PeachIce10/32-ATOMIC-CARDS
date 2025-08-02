@@ -1,0 +1,28 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.tabs.accordion.toggle.v1
+title: Tabs ⇄ Accordion Toggle
+version: 1
+
+description: >
+  Lets the merchant switch an option group container between horizontal
+  Tabs and vertical Accordion modes with a single toggle.  Purely
+  presentational—no data contract changes.
+
+# --------- Structural slots -----------------------------------------
+slots:
+  - container(*) # one slot per option group; builder auto-generates
+
+# --------- Merchant knobs -------------------------------------------
+merchantKnobs:
+  layoutMode: enum [tabs, accordion] # live toggle
+  rememberChoice: bool # persist shopper’s toggle
+  mobileBreakpoint: int # px width to auto-switch
+  animationStyle: enum [slide, fade, none]
+
+# --------- Compatible Atomic Cards ----------------------------------
+compatibleCards: all # any option group can live inside
+
+# --------- Pass-B polish placeholders -------------------------------
+designTokensRef: TODO_token_link # tab height, border, chevron icons
+a11yNotes: {} # appropriate roles per mode
+analyticsEvents: [] # e.g. layoutToggleTapped

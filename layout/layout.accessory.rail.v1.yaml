@@ -1,0 +1,36 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.accessory.rail.v1
+title: Accessory Rail (Below Hero)
+version: 1
+
+description: >
+  Inserts a horizontal accessory-selector rail beneath the main product
+  media/hero.  Accessories do **not** change the base SKU; instead they
+  add separate line-items (linkedProductID / linkedServiceID) when
+  selected.
+
+# --------- Structural slots -------------------------------------------------
+slots:
+  - accessoryRail # row of accessory selector cards
+  - railFooter # optional “Add all” / “Clear” actions
+
+# --------- Merchant knobs ---------------------------------------------------
+merchantKnobs:
+  maxVisible: int # how many accessories before scroll/shuffle
+  showSubtotal: bool # display running accessory subtotal
+  preselectAll: bool # auto-check every accessory by default
+  showImages: bool # render thumbnails in rail
+  railStyle: enum [tile, compact, list] # visual style presets
+
+# --------- Compatible Atomic Cards ------------------------------------------
+compatibleCards:
+  - addon.checkbox.v1 # simple priceable toggles
+  - display.optioncard.v1 # image-plus-copy accessory tiles
+  - addon.slot.v1 # scheduled service add-ons
+  - addon.subscription.v1 # plan add-ons
+  - boolean.flag.v1 # free yes/no accessories
+
+# --------- Pass-B polish layers ---------------------------------------------
+designTokensRef: TODO_token_link # rail gutter, thumbnail size
+a11yNotes: {} # ARIA list / checkbox roles
+analyticsEvents: [] # e.g. accessoryAdded, accessoryRemoved

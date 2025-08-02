@@ -1,0 +1,30 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.accordion.lazy.v1
+title: Lazy-load Accordion Sections
+version: 1
+
+description: >
+  Wraps each option group in a collapsible accordion section and defers
+  mounting its inner Atomic Cards until the section is opened.  
+  Boosts initial page performance on PDPs with many groups.
+
+# --------- Structural slots -----------------------------------------
+# Each option group dropped in the builder is rendered in its own slot.
+slots:
+  - section(*) # “*” = dynamic repeat per option group
+
+# --------- Merchant knobs -------------------------------------------
+merchantKnobs:
+  initiallyOpen: int[] # indices to auto-expand (e.g. [0])
+  lazyLoad: bool # true = render on first open
+  scrollIntoView: bool # smooth scroll when a section opens
+  animationStyle: enum [slide, fade] # entry animation
+  rememberState: bool # persist open/closed on revisit
+
+# --------- Compatible Atomic Cards ----------------------------------
+compatibleCards: all # any Atomic Card can live inside
+
+# --------- Pass-B polish placeholders -------------------------------
+designTokensRef: TODO_token_link # header height, chevron icon, spacing
+a11yNotes: {} # aria-expanded, roving tabindex
+analyticsEvents: [] # e.g. accordionSectionOpened

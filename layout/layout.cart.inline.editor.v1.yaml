@@ -1,0 +1,45 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.cart.inline.editor.v1
+title: Inline Cart Editor Drawer
+version: 1
+
+description: >
+  Adds a fixed-position side drawer (or bottom sheet on mobile) that lets
+  shoppers edit line-item options, quantities, and add-ons without
+  navigating away from the cart page.  All edits update totals in real
+  time.
+
+# --------- Structural slots -----------------------------------------
+slots:
+  - drawerHeader # line-item image + title + close “×”
+  - optionPanel # hosts Atomic Cards for the selected item
+  - accessoryRail # optional upsell add-ons for this item
+  - drawerFooter # qty stepper, line subtotal, Save / Remove buttons
+
+# --------- Merchant knobs -------------------------------------------
+merchantKnobs:
+  openOnItemClick: bool # auto-open when item tapped (default)
+  enableAccessories: bool # show accessoryRail slot
+  drawerWidthPx: int # desktop width (e.g. 420)
+  mobileMode: enum [sheet, full] # bottom sheet vs full page
+  animateEntry: bool # slide/fade animation
+  confirmOnRemove: bool # extra step before delete
+  showDiscountBreakdn: bool # show per-line discounts
+  autoCloseOnSave: bool # dismiss drawer after save
+
+# --------- Compatible Atomic Cards ----------------------------------
+compatibleCards:
+  - numeric.scalar.v1
+  - numeric.slider.v1
+  - text.enum.v1
+  - colour.swatch.v1
+  - addon.checkbox.v1
+  - addon.slot.v1
+  - addon.subscription.v1
+  - boolean.flag.v1
+  - display.optioncard.v1
+
+# --------- Pass-B polish placeholders -------------------------------
+designTokensRef: TODO_token_link # drawer shadow, overlay opacity
+a11yNotes: {} # focus trap, aria-modal, live-region
+analyticsEvents: [] # e.g. cartEditorOpened, lineSaved

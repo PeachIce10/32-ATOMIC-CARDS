@@ -1,0 +1,32 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.sticky.addtocart.v1
+title: Sticky Add-to-Cart Bar
+version: 1
+
+description: >
+  Pins a compact Add-to-Cart (ATC) bar to the viewport edge once all
+  required product options are selected.  Keeps the checkout CTA visible
+  while the shopper scrolls, boosting conversion on long PDPs.
+
+# --------- Structural slots -----------------------------------------
+slots:
+  - stickyATC # auto-renders variant title, price, qty, ATC button
+
+# --------- Merchant knobs -------------------------------------------
+merchantKnobs:
+  position: enum [bottom, top] # default bottom
+  showPrice: bool # running subtotal
+  showThumbnail: bool # mini hero image
+  priceFormat: enum [total, delta] # show full or delta only
+  animateEntry: bool # fade / slide in on first appear
+  hideUntilValid: bool # show only when variant valid
+  mobileOnly: bool # desktop sticks to normal PDP
+  backgroundStyle: enum [solid, glass] # solid colour vs frosted glass
+
+# --------- Compatible Atomic Cards ----------------------------------
+compatibleCards: [] # reads variant state; hosts no cards directly
+
+# --------- Pass-B polish placeholders -------------------------------
+designTokensRef: TODO_token_link # bar height, colours, shadow
+a11yNotes: {} # landmark role, live-price updates
+analyticsEvents: [] # e.g. stickyATCShown, stickyATCUsed

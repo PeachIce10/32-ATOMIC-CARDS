@@ -1,0 +1,36 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.modal.lightbox.v1
+title: Modal Image Zoom / Lightbox
+version: 1
+
+description: >
+  Adds a full-screen (or viewport-filling) lightbox overlay that presents
+  the product media gallery in an immersive carousel.  Activated by
+  tapping the primary hero image or any configured thumbnail.
+
+# --------- Structural slots -----------------------------------------
+slots:
+  - lightboxHero # large media viewport
+  - thumbStrip # optional thumbnail rail inside modal
+  - captionArea # optional caption / ALT text display
+  - closeButton # “×” or chevron icon, auto-rendered
+
+# --------- Merchant knobs -------------------------------------------
+merchantKnobs:
+  enableOnDesktop: bool # default true
+  enableOnMobile: bool # default true
+  zoomGestures: bool # pinch-to-zoom for touch
+  showThumbStrip: bool # thumb rail toggle
+  includeVideo: bool # play inline if video thumb tapped
+  animationStyle: enum [fade, zoom, slide] # modal entry animation
+  autoPlay360: bool # auto-spin 360 sprite if present
+  backgroundShade: enum [dark, light, blur]
+  showShareIcons: bool # social share buttons in captionArea
+
+# --------- Compatible Atomic Cards ----------------------------------
+compatibleCards: [] # Lightbox consumes Assets; no option cards live inside.
+
+# --------- Pass-B polish placeholders -------------------------------
+designTokensRef: TODO_token_link # overlay opacity, icon size
+a11yNotes: {} # focus trap, ESC exit, ARIA-modal
+analyticsEvents: [] # e.g. lightboxOpened, mediaSwiped

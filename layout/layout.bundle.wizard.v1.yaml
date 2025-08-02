@@ -1,0 +1,66 @@
+# ---------- Layout-Wrapper Definition ----------
+wrapperId: layout.bundle.wizard.v1
+title: Multi-step Wizard PDP
+version: 1
+
+# What it does
+description: >
+  Replaces a long accordion PDP with sequential “Step 1 → Step N” frames
+  and a sticky progress / stepper bar.  Each step hosts one or more
+  Atomic Cards dropped into the named slots below.
+
+# --------- Structural slots (page builder drags cards here) ----------
+slots:
+  - step1
+  - step2
+  - step3 # add/remove as needed
+  - upsellDrawer # optional side drawer for cross-sells
+
+# --------- Merchant knobs -------------------------------------------
+merchantKnobs:
+  maxSteps: int # hard cap for visual stepper
+  showProgressBar: bool # toggles sticky header
+  gateOnRules: bool # block “Next” until Rules valid
+  showBreadcrumbs: bool # optional breadcrumb trail
+  allowBackstep: bool # permit user to revisit prior step
+  mobileLayout: enum [tabs, accordion]
+
+# --------- Compatibility --------------------------------------------
+compatibleCards:
+  - numeric.scalar.v1
+  - numeric.vector.v1
+  - numeric.slider.v1
+  - text.single.v1
+  - text.enum.v1
+  - text.array.v1
+  - text.rich.v1
+  - time.date.v1
+  - time.daterange.v1
+  - time.time.v1
+  - time.rrule.v1
+  - media.image.v1
+  - media.file.v1
+  - media.videoaudio.v1
+  - media.model3d.v1
+  - colour.swatch.v1
+  - colour.picker.v1
+  - colour.gradient.v1
+  - colour.palette.v1
+  - area.selector.v1
+  - geo.point.v1
+  - geo.area.v1
+  - geo.route.v1
+  - matrix.grid.v1
+  - ship.methodlist.v1
+  - external.url.v1
+  - external.id.v1
+  - addon.checkbox.v1
+  - addon.slot.v1
+  - addon.subscription.v1
+  - boolean.flag.v1
+  - display.optioncard.v1
+
+# --------- Deferred polish layers (Pass B) --------------------------
+designTokensRef: TODO_token_link # stepper colours, spacing
+a11yNotes: {} # roles, focus order
+analyticsEvents: [] # e.g. wizardStepCompleted

@@ -1,0 +1,40 @@
+# -----------------------------------------------------------
+# actions_anchors.yaml   — master list of action groups
+# -----------------------------------------------------------
+
+# 0️⃣ Universal defaults  – keep every card silent unless overridden
+BaseCanTrigger: &BaseCanTrigger [] # empty list
+BasePostSave: &BasePostSave null # explicit null
+
+# 1️⃣ Add-on linkage (physical accessory or service plan)
+AddOnActions: &AddOnActions
+  - addLinkedProduct # attach accessory SKU
+  - addLinkedService # attach service-plan SKU
+  - removeLinkedItem # inverse of the two above
+
+# 2️⃣ Pricing & discounts
+PricingActions: &PricingActions
+  - repriceCart # re-run pricing engine
+  - applyCoupon
+  - applyDiscountCode
+  - recalcSubscription
+
+# 3️⃣ Shipping & fulfilment
+ShippingActions: &ShippingActions
+  - setShippingMethod
+  - addInsuranceLine
+  - addSignatureOption
+  - setPickupLocation
+
+# 4️⃣ Inventory & slot reservation
+InventoryActions: &InventoryActions
+  - reserveSlot
+  - releaseSlot
+  - holdInventory # stock hold for X minutes
+
+# 5️⃣ UI / Merchandising
+UIUpsellActions: &UIUpsellActions
+  - popupUpsell
+  - highlightUpsellTile
+  - showBanner
+  - openDrawer

@@ -1,21 +1,25 @@
 # ---------- Canonical Template Card ----------
-id         : media.model3d.v1
-humanLabel : 3-D Model Upload
-category   : MEDIA
+id         : checkbox.v1
+humanLabel : Priced Checkbox / Toggle
+category   : ADDON
 version    : 1
-canBeWrappedBy : addon.wrapper.v1
+canBeWrappedBy : addon.wrapper.v1     
 
 ELEMENTS:
-  - 360-Degree Viewer (angle picker)
-  - Drag-and-Drop File Upload
+  - Checkbox
+  - Toggle Switch
+  - Yes/No Button Pair
+  - Add-On Toggle
 
 CUSTOM-INPUTS:
-  - allowedMimeTypes : string[]
-  - maxFileSizeMB    : int
-  - maxTriangles     : int
-  - requireManifold  : bool
-  - units            : enum “mm / cm / in”
-  - defaultModels    : URL[]
+  - priceMinor       : int
+  - unitFeeMinor     : int | null
+  - recurringCadence : enum | null
+  - badgeText        : string
+  - defaultChecked   : bool
+  - required         : bool
+  - taxClass         : enum “service / digital / none”
+  - priceIncludesTax : bool
 
 # ---- Buckets drafted in Pass A (schema fixed; content TBD) ----
 LAYOUT  : TODO_LATER
