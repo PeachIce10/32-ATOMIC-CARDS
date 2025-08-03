@@ -1,0 +1,89 @@
+# =========================
+#  text.rich.v1.yaml
+# =========================
+id              : text.rich.v1
+humanLabel      : Rich Text / Markdown
+category        : TEXT
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 320
+  breakpointBehaviour : reflow          # reflow | stack | scaleToolbar
+
+perfConstraints:
+  maxCharacters       : 50_000
+  maxDOMNodes         : 1_000
+
+eventPayload:
+  onContentChanged    : { value: string }    # HTML / Markdown markup
+
+externalFragments:
+  - text.rich.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates (2 Rich-text presentation styles)
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Rich-Text Editor – Toolbar
+    presentationVariant : rte-toolbar
+    facePlateTokenPrefix: token.richTextToolbar
+    userCan: |
+      Type styled text; use inline toolbar to apply bold, italics,
+      headings, lists, images, code, links. Output HTML.
+    customInputs:
+      [allowedMarks, allowedNodes, maxCharacters, placeholder]
+    coversTheseLooks: |
+      • Sticky toolbar above field  
+      • Floating contextual bubble toolbar
+    constraints:
+      allowedMarks : [bold, italic, underline, code, strike, link]
+      allowedNodes : [h1-h3, p, ul, ol, img, codeblock]
+      maxCharacters: 0-50000
+    layoutHints: [layout.modal.lightbox.v1, layout.wizard.pdp.v1]
+
+  - variantLabel        : Markdown Textarea
+    presentationVariant : rte-markdown
+    facePlateTokenPrefix: token.richTextMarkdown
+    userCan: |
+      Write Markdown in plain textarea; preview renders live HTML.
+    customInputs:
+      [allowedMarks, allowedNodes, maxCharacters, placeholder]
+    coversTheseLooks: |
+      • Side-by-side edit / preview  
+      • Tabbed edit ↔ preview
+    constraints:
+      allowedMarks : [*]       # all inline marks allowed
+      allowedNodes : [*]       # full Markdown spec
+      maxCharacters: 0-100000
+    layoutHints: [layout.tabs.accordion.toggle.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A (content later)
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B polish placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

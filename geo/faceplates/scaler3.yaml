@@ -1,0 +1,74 @@
+# =========================
+#  geo.route.v1.yaml
+# =========================
+id              : geo.route.v1
+humanLabel      : Geo Route
+category        : GEO
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1          # may be nested in add-on wrapper
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 360
+  breakpointBehaviour : reflow               # reflow | stack | scaleThumbs
+
+perfConstraints:
+  maxVertices         : 500                  # hard ceiling
+  maxLengthKm         : 5000                 # sanity cap
+
+eventPayload:
+  onRouteDrawn : { polyline: [ {lat:number, lon:number} ] }
+
+externalFragments:
+  - geo.route.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Map Polyline Drawer
+    presentationVariant : polyline-drawer
+    facePlateTokenPrefix: token.geoRoute
+    userCan: |
+      Click to add way-points, double-click to finish the route.
+      Vertex count limited by `maxVertices`; length limited by `maxLengthKm`.
+      Segments may snap to roads if enabled.
+    customInputs:
+      [maxVertices, maxLengthKm, snapToRoads, allowElevation]
+    coversTheseLooks: |
+      • Free-hand polyline over map  
+      • Road-snapped polyline (transport mode)  
+      • Elevation chart toggle if `allowElevation` true
+    constraints:
+      maxVertices : 2-500
+      maxLengthKm : 0-5000
+    layoutHints: [layout.modal.lightbox.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

@@ -1,0 +1,230 @@
+# =========================
+#  text.enum.v1.yaml
+# =========================
+id              : text.enum.v1
+humanLabel      : Enumerated Choice
+category        : TEXT
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+layoutTokens:
+  minWidthPx          : 280
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxOptions          : 300
+  maxDOMNodes         : 400
+
+eventPayload:
+  onSelectionChanged  : { values: string[] }
+
+externalFragments:
+  - text.enum.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates  (16 presentation variants)
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Dropdown – Single-Select
+    presentationVariant : dropdown-single
+    facePlateTokenPrefix: token.enumDropdownSingle
+    userCan: |
+      Open dropdown ➜ pick one option. Optional search bar.
+    customInputs:
+      [allowedValues, searchable, sectioned, defaultValues,
+       required, optionImages, optionIcons, showClearAll]
+    constraints:
+      multiSelect : false
+      maxValues   : 1
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Dropdown – Multi-Select
+    presentationVariant : dropdown-multi
+    facePlateTokenPrefix: token.enumDropdownMulti
+    userCan: |
+      Tick check-boxes in dropdown; multiple chips show selections.
+    customInputs:
+      [allowedValues, multiSelect, searchable, sectioned, maxValues,
+       allowCustomValue, defaultValues, required, showClearAll]
+    constraints:
+      multiSelect : true
+      maxValues   : 2-50
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Dropdown – Searchable
+    presentationVariant : dropdown-search
+    facePlateTokenPrefix: token.enumDropdownSearch
+    userCan: |
+      Type in search box to filter the list; pick one value.
+    customInputs:
+      [allowedValues, searchable, defaultValues, required]
+    constraints:
+      searchable : true
+      multiSelect: false
+    layoutHints: [layout.tabs.accordion.toggle.v1]
+
+  - variantLabel        : Dropdown – Sectioned
+    presentationVariant : dropdown-sectioned
+    facePlateTokenPrefix: token.enumDropdownSectioned
+    userCan: |
+      Choose from grouped options under headers.
+    customInputs:
+      [allowedValues, sectioned, defaultValues, required]
+    constraints:
+      sectioned : true
+    layoutHints: [layout.accordion.lazy.v1]
+
+  - variantLabel        : Dropdown – Cascading
+    presentationVariant : dropdown-cascading
+    facePlateTokenPrefix: token.enumDropdownCascade
+    userCan: |
+      Select parent ➜ child option in two-level menu.
+    customInputs:
+      [allowedValues, defaultValues, required]
+    constraints:
+      multiSelect : false
+    layoutHints: [layout.modal.quickadd.v1]
+
+  - variantLabel        : Dropdown – Quick-Filter
+    presentationVariant : dropdown-quickfilter
+    facePlateTokenPrefix: token.enumDropdownQuick
+    userCan: |
+      Inline search field filters list as you type.
+    customInputs:
+      [allowedValues, searchable, showClearAll, defaultValues]
+    constraints:
+      searchable : true
+    layoutHints: [layout.sticky.quickadd.bar.v1]
+
+  - variantLabel        : Dropdown – Clear-All
+    presentationVariant : dropdown-clearall
+    facePlateTokenPrefix: token.enumDropdownClear
+    userCan: |
+      Multi-select dropdown with “Clear all” action in header.
+    customInputs:
+      [allowedValues, multiSelect, showClearAll, defaultValues]
+    constraints:
+      multiSelect : true
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Check-Box Pills Style
+    presentationVariant : pills-checkbox
+    facePlateTokenPrefix: token.enumPills
+    userCan: |
+      Toggle pill check-boxes; many may be active.
+    customInputs:
+      [allowedValues, multiSelect, defaultValues, required, maxValues]
+    constraints:
+      multiSelect : true
+    layoutHints: [layout.sticky.quickadd.bar.v1]
+
+  - variantLabel        : Icon-Tile Rows
+    presentationVariant : tiles-icon
+    facePlateTokenPrefix: token.enumIconTile
+    userCan: |
+      Click icon tiles in a responsive grid to select.
+    customInputs:
+      [allowedValues, optionIcons, multiSelect, defaultValues,
+       required, maxValues]
+    constraints:
+      maxValues : 1-12
+    layoutHints: [layout.mixmatch.grid.v1]
+
+  - variantLabel        : Radio List – Standard
+    presentationVariant : radio-standard
+    facePlateTokenPrefix: token.enumRadioStd
+    userCan: |
+      Vertical radio list; select exactly one.
+    customInputs:
+      [allowedValues, defaultValues, required, optionImages,
+       optionIcons]
+    constraints:
+      multiSelect : false
+    layoutHints: [layout.accordion.lazy.v1]
+
+  - variantLabel        : Radio List – Compact
+    presentationVariant : radio-compact
+    facePlateTokenPrefix: token.enumRadioCompact
+    userCan: |
+      Two-column dense radio list for many options.
+    customInputs:
+      [allowedValues, defaultValues, required]
+    constraints:
+      multiSelect : false
+    layoutHints: [layout.modal.quickadd.v1]
+
+  - variantLabel        : Radio List – Segmented Button Group
+    presentationVariant : radio-segmented
+    facePlateTokenPrefix: token.enumRadioSegmented
+    userCan: |
+      Horizontal segmented buttons behave as radio inputs.
+    customInputs:
+      [allowedValues, defaultValues, required]
+    constraints:
+      multiSelect : false
+    layoutHints: [layout.hero.switcher.v1]
+
+  - variantLabel        : Radio List – Subscription Plan Tabs
+    presentationVariant : radio-plan-tabs
+    facePlateTokenPrefix: token.enumRadioPlan
+    userCan: |
+      Tabs act as exclusive plan selector.
+    customInputs:
+      [allowedValues, defaultValues, required, optionImages]
+    constraints:
+      multiSelect : false
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Segmented Button Group
+    presentationVariant : button-segmented
+    facePlateTokenPrefix: token.enumSegButton
+    userCan: |
+      Inline buttons; one active at a time.
+    customInputs:
+      [allowedValues, defaultValues, required]
+    constraints:
+      multiSelect : false
+    layoutHints: [layout.sticky.quickadd.bar.v1]
+
+  - variantLabel        : Subscription Plan Tabs
+    presentationVariant : tabs-plan
+    facePlateTokenPrefix: token.enumPlanTabs
+    userCan: |
+      Switch between subscription plans inside tab bar.
+    customInputs:
+      [allowedValues, defaultValues, required, optionImages]
+    constraints:
+      multiSelect : false
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Tier Button Set
+    presentationVariant : tier-buttons
+    facePlateTokenPrefix: token.enumTier
+    userCan: |
+      Choose tier (Silver / Gold / …); buttons show price delta.
+    customInputs:
+      [allowedValues, optionImages, defaultValues, required]
+    constraints:
+      multiSelect : false
+    layoutHints: [layout.hero.switcher.v1]
+
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

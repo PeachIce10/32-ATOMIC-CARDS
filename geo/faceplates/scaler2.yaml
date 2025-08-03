@@ -1,0 +1,77 @@
+# =========================
+#  geo.point.v1.yaml
+# =========================
+id              : geo.point.v1
+humanLabel      : Geo Point
+category        : GEO
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 320
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxPrecision        : 6      # decimal places on lat/lon
+  maxBiasRadiusKm     : 1000   # safety cap
+
+eventPayload:
+  onLocationSet : { lat:number, lon:number }
+
+externalFragments:
+  - geo.point.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Map-Pin Picker
+    presentationVariant : pin-picker
+    facePlateTokenPrefix: token.geoPin
+    userCan: |
+      Drag or click to place a pin on the map.
+      Co-ordinates snap to `coordPrecision` dp;
+      “My location” button visible if enabled.
+    customInputs:
+      [allowedCountries, blockedCountries, allowedRegions,
+       coordPrecision, defaultLatLon, requirePostalCode,
+       suggestionBias, showMyLocationButton,
+       mapProvider, snapToRoads]
+    coversTheseLooks: |
+      • Standard pin on provider basemap  
+      • Optional bias circle overlay  
+      • “Use my location” GPS chip
+    constraints:
+      coordPrecision : 0-6
+      suggestionBias : { radiusKm: 5-1000 }
+    layoutHints: [layout.modal.quickadd.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

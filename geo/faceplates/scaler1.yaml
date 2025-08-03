@@ -1,0 +1,89 @@
+# =========================
+#  geo.area.v1.yaml
+# =========================
+id              : geo.area.v1
+humanLabel      : Geo Area
+category        : GEO
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 320
+  breakpointBehaviour : reflow        # reflow | stack
+
+perfConstraints:
+  maxVertices         : 50            # hard safety net
+
+eventPayload:
+  onShapeChanged : { shape: object }  # GeoJSON fragment
+
+externalFragments:
+  - geo.area.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Map Circle / Box / Polygon Drawer
+    presentationVariant : shape-areas
+    facePlateTokenPrefix: token.geoArea
+    userCan: |
+      Draw or resize a **circle**, **bounding box**, or **polygon**
+      on the map.  Area must satisfy `minAreaKm2`‒`maxAreaKm2`.
+    customInputs:
+      [shapeKind, minRadiusM, maxRadiusM,
+       minAreaKm2, maxAreaKm2, maxVertices,
+       defaultShape]
+    coversTheseLooks: |
+      • Circle handle with radius indicator  
+      • Click-to-draw bbox / polygon with vertex dots
+    constraints:
+      shapeKind : [CIRCLE, BBOX, POLYGON]
+      minAreaKm2: 0.01-∞
+    layoutHints: [layout.modal.lightbox.v1]
+
+  - variantLabel        : Map Polyline Drawer
+    presentationVariant : shape-path
+    facePlateTokenPrefix: token.geoPath
+    userCan: |
+      Draw a **polyline/route** on the map; length limited
+      by `maxLengthKm` and `maxVertices`.
+    customInputs:
+      [shapeKind, maxVertices, maxLengthKm, defaultShape]
+    coversTheseLooks: |
+      • Freehand polyline with vertex snapping  
+      • Distance badge at end-point
+    constraints:
+      shapeKind   : [POLYLINE]
+      maxLengthKm : 0.1-500
+    layoutHints: [layout.modal.lightbox.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

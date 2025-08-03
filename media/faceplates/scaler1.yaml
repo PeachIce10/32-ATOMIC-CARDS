@@ -1,0 +1,92 @@
+# =========================
+#  media.file.v1.yaml
+# =========================
+id              : media.file.v1
+humanLabel      : File Upload
+category        : MEDIA
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 260
+  breakpointBehaviour : reflow          # reflow | stack
+
+perfConstraints:
+  maxFilesDisplay     : 20              # thumbnails rendered at once
+  maxDOMNodes         : 160
+
+eventPayload:
+  onFilesChanged      : { urls: string[] }
+
+externalFragments:
+  - media.file.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Drag-and-Drop Zone
+    presentationVariant : dnd-standard
+    facePlateTokenPrefix: token.fileDropzone
+    userCan: |
+      Drag files onto the drop-zone or click to open the OS file-picker.
+      Supports multi-select if `multiple=true`.
+    customInputs:
+      [allowedMimeTypes, blockedExtensions, maxFileSizeMB,
+       multiple, maxFiles, minFiles, virusScanRequired,
+       encryptAtRest, requireDescription, defaultFiles]
+    coversTheseLooks: |
+      • Full-width dashed outline zone  
+      • Thumbnail grid appears below after upload  
+      • Progress bar on each file card
+    constraints:
+      maxFileSizeMB : 1-500
+      maxFiles      : 1-10
+    layoutHints: [layout.modal.lightbox.v1]
+
+  - variantLabel        : File List (Compact)
+    presentationVariant : list-compact
+    facePlateTokenPrefix: token.fileListCompact
+    userCan: |
+      Upload by button + file-picker; view files in a compact row list.
+    customInputs:
+      [allowedMimeTypes, blockedExtensions, maxFileSizeMB,
+       multiple, maxFiles, minFiles, virusScanRequired,
+       encryptAtRest, requireDescription, defaultFiles]
+    coversTheseLooks: |
+      • Icon + filename + remove “X” button  
+      • Optional description text-area per row
+    constraints:
+      multiple  : true
+      maxFiles  : 2-20
+    layoutHints: [layout.wizard.pdp.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A (content comes later)
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B polish placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

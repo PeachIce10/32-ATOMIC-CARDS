@@ -1,0 +1,104 @@
+# =========================
+#  time.daterange.v1.yaml
+# =========================
+id              : time.daterange.v1
+humanLabel      : Date-Range Picker
+category        : DATE_TIME
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+layoutTokens:
+  minWidthPx          : 320
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxDOMNodes : 180
+
+eventPayload:
+  onRangeSelected : { start: string , end: string }   # ISO-8601 dates
+
+externalFragments:
+  - time.daterange.v1.a11y_i18n.yml
+
+faceplates:
+
+  - variantLabel        : Date-Range Picker (Inline)
+    presentationVariant : range-inline
+    facePlateTokenPrefix: token.dateRangeInline
+    userCan: |
+      Drag across the calendar or click two dates to set start → end.
+      Keyboard arrows move focus; PgUp/PgDn change months.
+    customInputs:
+      [minDate, maxDate,
+       minGapDays, maxGapDays,
+       defaultStart, defaultEnd,
+       required, disabledWeekdays, disabledDates,
+       displayFormat]
+    coversTheseLooks: |
+      • Two-month view side-by-side  
+      • One-month view with arrows
+    constraints:
+      minGapDays : 0-90
+      maxGapDays : 1-365
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Date-Range Picker (Dropdown)
+    presentationVariant : range-dropdown
+    facePlateTokenPrefix: token.dateRangeDropdown
+    userCan: |
+      Click the start field to open the calendar, pick start and end,
+      then the dropdown closes showing “Sep 1 – Sep 21”.
+    customInputs:
+      [minDate, maxDate,
+       minGapDays, maxGapDays,
+       defaultStart, defaultEnd,
+       required, disabledWeekdays, disabledDates,
+       displayFormat]
+    coversTheseLooks: |
+      • Single input with range text  
+      • Dual inputs “Start / End”
+    constraints:
+      minGapDays : 0-90
+      maxGapDays : 1-365
+    layoutHints: [layout.modal.quickadd.v1]
+
+  - variantLabel        : Preset Ranges Picker
+    presentationVariant : range-presets
+    facePlateTokenPrefix: token.dateRangePresets
+    userCan: |
+      Choose a preset chip (“Last 7 days”, “This month”) or pick custom
+      start/end via calendar.
+    customInputs:
+      [minDate, maxDate,
+       minGapDays, maxGapDays,
+       defaultStart, defaultEnd,
+       required, disabledWeekdays, disabledDates,
+       displayFormat]
+    coversTheseLooks: |
+      • Horizontal preset chips above calendar  
+      • “Custom” opens inline calendar
+    constraints:
+      presets : ["Today","Yesterday","Last 7 days","This month"]
+      minGapDays : 0
+      maxGapDays : 365
+    layoutHints: [layout.tabs.accordion.toggle.v1]
+
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

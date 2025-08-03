@@ -1,0 +1,88 @@
+# =========================
+#  color.palette.v1.yaml
+# =========================
+id              : color.palette.v1
+humanLabel      : Color Palette (2-N)
+category        : COLOR
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1          # may be added as an extra
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 220
+  breakpointBehaviour : reflow             # reflow | stack | scaleThumbs
+
+perfConstraints:
+  maxColours          : 20                 # hard UI cap
+
+eventPayload:
+  onPaletteChanged    : { palette: HEX[] }
+
+externalFragments:
+  - color.palette.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Chip / Tag Palette
+    presentationVariant : palette-chips
+    facePlateTokenPrefix: token.paletteChips
+    userCan: |
+      Pick 2-N colour chips from a swatch list.  
+      Supports single- or multi-select; enforces uniqueness if required.
+    customInputs:
+      [multiSelect, minColours, maxColours,
+       requireUnique, minContrastDeltaE, defaultPalette]
+    coversTheseLooks: |
+      • Pill or square swatches  
+      • Overflow scroll row when >10 colours
+    constraints:
+      minColours : 2
+      maxColours : 20
+    layoutHints: [layout.wizard.pdp.v1, layout.sticky.quickadd.bar.v1]
+
+  - variantLabel        : Carousel Tile Selector
+    presentationVariant : palette-carousel
+    facePlateTokenPrefix: token.paletteCarousel
+    userCan: |
+      Swipe through colour tiles in a horizontal carousel; tap to select.
+    customInputs:
+      [multiSelect, minColours, maxColours,
+       requireUnique, minContrastDeltaE, defaultPalette]
+    coversTheseLooks: |
+      • Snap-scrolling carousel rail  
+      • Auto-group by hue clusters
+    constraints:
+      minColours : 2
+      maxColours : 12                 # UX: too many tiles kills carousel
+    layoutHints: [layout.carousel.parallax.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A (content later)
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

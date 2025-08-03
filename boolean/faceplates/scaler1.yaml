@@ -1,0 +1,89 @@
+# =========================
+#  boolean.flag.v1.yaml
+# =========================
+id              : boolean.flag.v1
+humanLabel      : Boolean Flag (Free)
+category        : BOOLEAN
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1        # may live inside add-on wrapper
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 120
+  breakpointBehaviour : reflow             # reflow | stack
+
+eventPayload:
+  onToggle : { value: boolean }            # emits true/false
+
+externalFragments:
+  - boolean.flag.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates  (one row per visual variant)
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Checkbox
+    presentationVariant : checkbox
+    facePlateTokenPrefix: token.booleanCheckbox
+    userCan: |
+      Click the square checkbox to toggle between checked ✓ and empty □.
+      Uses the `defaultChecked` value on first render.
+    customInputs:
+      [defaultChecked, required, ariaDescription]
+    coversTheseLooks: |
+      • Square or rounded checkbox  
+      • Optional indeterminate state
+    layoutHints: [layout.wizard.pdp.v1, layout.tabs.accordion.toggle.v1]
+
+  - variantLabel        : Toggle Switch
+    presentationVariant : toggle-switch
+    facePlateTokenPrefix: token.booleanToggle
+    userCan: |
+      Tap the pill-shaped switch to slide the knob ON ⇄ OFF.
+    customInputs:
+      [defaultChecked, required, ariaDescription]
+    coversTheseLooks: |
+      • Pill switch with circular knob  
+      • Optional ON/OFF labels inside track
+    layoutHints: [layout.modal.quickadd.v1, layout.sticky.addtocart.v1]
+
+  - variantLabel        : Yes/No Button Pair
+    presentationVariant : button-pair
+    facePlateTokenPrefix: token.booleanYesNo
+    userCan: |
+      Choose between two mutually-exclusive buttons labelled “Yes” and “No”.
+    customInputs:
+      [defaultChecked, required, ariaDescription]
+    coversTheseLooks: |
+      • Filled / outline buttons  
+      • “Yes” primary-colour accent
+    layoutHints: [layout.hero.switcher.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A (content later)
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

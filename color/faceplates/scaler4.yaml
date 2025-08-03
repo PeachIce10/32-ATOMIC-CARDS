@@ -1,0 +1,170 @@
+# =========================
+#  color.swatch.v1.yaml
+# =========================
+id              : color.swatch.v1
+humanLabel      : Color Swatch (Single)
+category        : COLOR
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1      # optional add-on wrapper
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 160
+  breakpointBehaviour : reflow           # reflow | stack | carousel
+
+perfConstraints:
+  maxSwatches         : 100              # hard UI limit
+
+eventPayload:
+  onColourPicked      : { hex: string }  # emits chosen HEX
+
+externalFragments:
+  - color.swatch.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates   (one row per visual variant)
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Colour Swatch Chip
+    presentationVariant : chip
+    facePlateTokenPrefix: token.swatchChip
+    userCan: |
+      Click a single colour chip; the chip fills with the chosen HEX.
+    customInputs:
+      [allowedColours, defaultColour, required, allowAlpha,
+       showLabels, paletteLayout, swatchSizePx]
+    coversTheseLooks: |
+      • Filled circle / square chip  
+      • Optional tick overlay when active
+    constraints:
+      paletteLayout : [row, grid]
+      swatchSizePx  : 12-48
+    layoutHints: [layout.carousel.parallax.v1]
+
+  - variantLabel        : Text-Label (Size) Swatch
+    presentationVariant : chip-label
+    facePlateTokenPrefix: token.swatchLabelChip
+    userCan: |
+      Choose a colour chip that also shows an inline text label
+      (e.g. “Red 500” or “#FF0000”).
+    customInputs:
+      [allowedColours, defaultColour, required, allowAlpha,
+       showLabels=true, paletteLayout, swatchSizePx]
+    coversTheseLooks: |
+      • Label right of chip (row)  
+      • Label under chip (grid)
+    constraints:
+      showLabels  : true
+      paletteLayout: [row, grid]
+    layoutHints: [layout.tabs.accordion.toggle.v1]
+
+  - variantLabel        : Pattern Swatch
+    presentationVariant : pattern
+    facePlateTokenPrefix: token.swatchPattern
+    userCan: |
+      Pick a chip filled with a repeating SVG / PNG pattern;
+      chip border colour echoes primary hue.
+    customInputs:
+      [allowedColours, swatchSetPreset, defaultColour, required,
+       allowAlpha=false, showLabels, paletteLayout, swatchSizePx]
+    coversTheseLooks: |
+      • Stripe / dot / checker fill  
+      • Optional alpha overlay badge
+    constraints:
+      allowAlpha : false
+    layoutHints: [layout.mixmatch.grid.v1]
+
+  - variantLabel        : Image / Thumbnail Swatch
+    presentationVariant : image-tile
+    facePlateTokenPrefix: token.swatchImage
+    userCan: |
+      Click a thumbnail image representing a material / finish;
+      border highlights the active selection.
+    customInputs:
+      [swatchSetPreset, defaultColour, required,
+       paletteLayout, swatchSizePx]
+    coversTheseLooks: |
+      • Square thumbnail  
+      • Carousel strip
+    constraints:
+      paletteLayout : [carousel, grid]
+    layoutHints: [layout.carousel.parallax.v1]
+
+  - variantLabel        : Icon Swatch
+    presentationVariant : icon
+    facePlateTokenPrefix: token.swatchIcon
+    userCan: |
+      Select an icon-filled chip (e.g. ✔︎, ✖︎, ☀︎) used for theme accents.
+    customInputs:
+      [allowedColours, defaultColour, required, showLabels=false,
+       paletteLayout=row, swatchSizePx]
+    coversTheseLooks: |
+      • Glyph-only chip  
+      • Tooltip shows HEX on hover
+    constraints:
+      showLabels     : false
+      paletteLayout  : row
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Carousel Tile Selector
+    presentationVariant : carousel-tile
+    facePlateTokenPrefix: token.swatchCarousel
+    userCan: |
+      Swipe left/right through large colour tiles in a horizontal carousel;
+      tap a tile to select.
+    customInputs:
+      [allowedColours, defaultColour, required, paletteLayout=carousel,
+       swatchSizePx]
+    coversTheseLooks: |
+      • Edge-to-edge image tile  
+      • Snap scrolling
+    constraints:
+      paletteLayout : carousel
+      swatchSizePx  : 64-120
+    layoutHints: [layout.carousel.parallax.v1]
+
+  - variantLabel        : Thumbnail-Carousel Selector
+    presentationVariant : carousel-thumb
+    facePlateTokenPrefix: token.swatchThumbCarousel
+    userCan: |
+      Drag a thumbnail carousel under the main hero; clicking a thumb
+      changes the hero image and emits the HEX.
+    customInputs:
+      [allowedColours, defaultColour, required, paletteLayout=carousel,
+       swatchSizePx]
+    coversTheseLooks: |
+      • Thin thumb strip with active border  
+      • Auto-scroll on hero change
+    constraints:
+      paletteLayout : carousel
+      swatchSizePx  : 40-60
+    layoutHints: [layout.hero.switcher.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A (content later)
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

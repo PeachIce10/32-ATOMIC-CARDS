@@ -1,0 +1,84 @@
+# =========================
+#  slot.selector.v1.yaml
+# =========================
+id              : slot.selector.v1
+humanLabel      : Service Slot Selector
+category        : ADDON
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1          # can sit inside priced wrapper
+
+# ── 0. Card-wide constraints ────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 300
+  breakpointBehaviour : reflow              # reflow | stack | modal
+
+perfConstraints:
+  maxRenderedSlots : 200                    # guard large calendars
+  maxDOMNodes      : 500
+
+eventPayload:
+  onSlotChanged  : { start: ISO8601, end: ISO8601 }
+  onCapacityFail : { slotId: string, requested: int, capacity: int }
+
+externalFragments:
+  - slot.selector.v1.a11y_i18n.yml
+
+# ── 1. Face-plates (variants) ───────────────────────────────────
+faceplates:
+
+  - variantLabel        : Calendar + Time Picker
+    presentationVariant : date-time
+    facePlateTokenPrefix: token.slotSelector.calendar
+    userCan: |
+      Pick a **single day** from the calendar then choose a time
+      in the list. Only slots within provider capacity are enabled.
+    customInputs:
+      [slotLengthMin, leadTimeHours, providerResourceID, capacityPerSlot,
+       priceMinor, taxClass, required]          # dualRange ignored
+    coversTheseLooks: |
+      • Dialog calendar with time list on right  
+      • Inline calendar under field
+    constraints:
+      slotLengthMin : 15-240
+      capacityPerSlot : 1-50
+      showSeconds : false
+    layoutHints: [layout.modal.quickadd.v1, layout.wizard.pdp.v1]
+
+  - variantLabel        : Time-Window Slider
+    presentationVariant : dual-range
+    facePlateTokenPrefix: token.slotSelector.range
+    userCan: |
+      Drag two thumbs to choose **start & end** of a service window;
+      length auto-rounded to `slotLengthMin`. Capacity check runs on release.
+    customInputs:
+      [slotLengthMin, leadTimeHours, providerResourceID, capacityPerSlot,
+       priceMinor, taxClass, required]          # dualRange=true implied
+    coversTheseLooks: |
+      • Horizontal dual-thumb slider  
+      • Displays total hours selected
+    constraints:
+      slotLengthMin : 30-480
+      minWindow     : 60            # implicit business rule
+    layoutHints: [layout.sitekit.bundle.v1]
+
+# ── 2. Buckets drafted in Pass A (content later) ────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ── 3. Pass-B polish placeholders ───────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

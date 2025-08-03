@@ -1,0 +1,126 @@
+# =========================
+#  numeric.vector.v1.yaml
+# =========================
+id              : numeric.vector.v1
+humanLabel      : Vector Number (2 – 3 axes)
+category        : NUMERIC
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 320
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxDOMNodes : 140
+
+eventPayload:
+  onValueChanged : { value: number[] }        # VECTOR2 “[x,y]”, VECTOR3 “[x,y,z]”
+
+externalFragments:
+  - numeric.vector.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : 2-Axis Stepper
+    presentationVariant : stepper-vector2
+    facePlateTokenPrefix: token.vectorStepper2
+    userCan: |
+      Use ± buttons beside each axis field to set “X” and “Y”
+      (obeys `min[]`, `max[]`, `precision[]`, `step[]`).
+    customInputs:
+      [shape, axisLabels, axisUnits,
+       min, max, step, precision,
+       defaultValues, displayPrecision,
+       roundingMode, placeholder, required]
+    coversTheseLooks: |
+      • Horizontal X / Y fields with inline steppers  
+      • Unit suffix per axis
+    constraints:
+      shape : VECTOR2
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : 3-Axis Stepper
+    presentationVariant : stepper-vector3
+    facePlateTokenPrefix: token.vectorStepper3
+    userCan: |
+      Adjust “X”, ”Y”, and “Z” via per-axis steppers or by typing.
+    customInputs:
+      [shape, axisLabels, axisUnits,
+       min, max, step, precision,
+       defaultValues, displayPrecision,
+       roundingMode, placeholder, required]
+    coversTheseLooks: |
+      • Three in-row fields with steppers  
+      • Stack vertically at narrow widths
+    constraints:
+      shape : VECTOR3
+    layoutHints: [layout.tabs.accordion.toggle.v1]
+
+  - variantLabel        : 2-Axis Text Fields
+    presentationVariant : input-vector2
+    facePlateTokenPrefix: token.vectorInput2
+    userCan: |
+      Type numeric values for “X” and “Y”; auto-format to `precision[]`.
+    customInputs:
+      [shape, axisLabels, axisUnits,
+       min, max, precision,
+       defaultValues, displayPrecision,
+       roundingMode, placeholder, required]
+    coversTheseLooks: |
+      • Plain or underlined twin inputs  
+      • Optional placeholder per axis
+    constraints:
+      shape     : VECTOR2
+      precision : [0-4,0-4]
+    layoutHints: [layout.modal.quickadd.v1]
+
+  - variantLabel        : 3-Axis Text Fields
+    presentationVariant : input-vector3
+    facePlateTokenPrefix: token.vectorInput3
+    userCan: |
+      Enter “X”, “Y”, “Z” values directly; field unit shown inline.
+    customInputs:
+      [shape, axisLabels, axisUnits,
+       min, max, precision,
+       defaultValues, displayPrecision,
+       roundingMode, placeholder, required]
+    coversTheseLooks: |
+      • Three separate inputs  
+      • Optional per-axis unit label
+    constraints:
+      shape     : VECTOR3
+      precision : [0-4,0-4,0-4]
+    layoutHints: [layout.modal.lightbox.v1]
+
+# ────────────────────────────────────────────────
+# Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

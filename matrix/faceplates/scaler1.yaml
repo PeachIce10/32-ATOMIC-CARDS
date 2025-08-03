@@ -1,0 +1,79 @@
+# =========================
+#  matrix.grid.v1.yaml
+# =========================
+id              : matrix.grid.v1
+humanLabel      : Matrix Grid
+category        : MATRIX
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 320
+  breakpointBehaviour : reflow        # reflow | stack | scaleThumbs
+
+perfConstraints:
+  maxRows        : 20
+  maxColumns     : 20
+  maxCells       : 400               # guard against huge tables
+
+eventPayload:
+  onSelectionChanged : { selections: [ [row:int, col:int] ] }
+
+externalFragments:
+  - matrix.grid.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Size × Colour Matrix Selector
+    presentationVariant : matrix-grid
+    facePlateTokenPrefix: token.matrixGrid
+    userCan: |
+      Click cells in the size-by-colour grid to select variant(s);
+      selected cells honour inventory and per-cell price overrides.
+      Supports single- or multi-select based on `maxCellsSelectable`.
+    customInputs:
+      [rowAxisLabel, columnAxisLabel, rowValues, columnValues,
+       allowDuplicates, maxCellsSelectable, defaultSelections,
+       required, cellPriceOverrides, inventoryMap]
+    coversTheseLooks: |
+      • 2-D table with row-header (sizes) and column-header (colours)  
+      • Inventory badges, price delta tags, disabled-out cells  
+      • Optional multi-select with running count
+    constraints:
+      maxCellsSelectable : 1-10 | null
+      allowDuplicates    : false
+      force:
+        required : true
+    layoutHints: [layout.wizard.pdp.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

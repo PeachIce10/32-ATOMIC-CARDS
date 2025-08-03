@@ -1,0 +1,78 @@
+# =========================
+#  area.selector.v1.yaml
+# =========================
+id              : area.selector.v1
+humanLabel      : Image Area Selector
+category        : AREA
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 320
+  breakpointBehaviour : reflow           # reflow | stack | scaleCanvas
+
+perfConstraints:
+  maxVertices   : 200
+  maxDOMNodes   : 250
+
+eventPayload:
+  onShapesChanged : { shapes: object[] }
+
+externalFragments:
+  - area.selector.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Image Hot-Spot Selector
+    presentationVariant : hotspot-canvas
+    facePlateTokenPrefix: token.areaHotspot
+    userCan: |
+      Draw, resize, or move a hotspot region on an image.
+      Supported shapes are limited by `shapeAllowed`; coordinates
+      are stored in the selected `coordSpace`.
+    customInputs:
+      [shapeAllowed, coordSpace, minWidthPx, minHeightPx, maxWidthPx,
+       maxHeightPx, minAreaPct, maxAreaPct, aspectRatioLock,
+       allowRotation, rotationSnapDeg, maxVertices, multipleRegions,
+       allowOverlap, snapGridPx, defaultShapes, allowMaskFile,
+       maskAllowedMime, maskMaxSizeMB]
+    coversTheseLooks: |
+      • Single hotspot with live size read-out  
+      • Multiple numbered regions (when `multipleRegions = true`)  
+      • Fixed-ratio crop box if `aspectRatioLock` set
+    constraints:
+      shapeAllowed : [CIRCLE, BBOX, POLYGON, POLYLINE]
+      coordSpace   : [PIXEL, PERCENT]
+    layoutHints: [layout.modal.lightbox.v1, layout.hero.switcher.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

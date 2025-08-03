@@ -1,0 +1,125 @@
+# =========================
+#  numeric.slider.v1.yaml
+# =========================
+id              : numeric.slider.v1
+humanLabel      : Slider (Number)
+category        : NUMERIC
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 280
+  breakpointBehaviour : reflow          # reflow | stack | scaleThumbs
+
+perfConstraints:
+  maxDOMNodes : 100
+
+eventPayload:
+  onValueChanged : { value: number[] }  # single sends “[n]”, dual “[low,high]”
+
+externalFragments:
+  - numeric.slider.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Single-Value Slider
+    presentationVariant : slider-single
+    facePlateTokenPrefix: token.numericSliderSingle
+    userCan: |
+      Drag the thumb horizontally (or vertically) to pick one numeric
+      value between `min` and `max`; arrow keys nudge by `step`.  
+      Optional numeric input field if `showInputField = true`.
+    customInputs:
+      [min, max, step, precision, defaultLow, required,
+       showTicks, showInputField, orientation, canonicalUnit]
+    coversTheseLooks: |
+      • Thumb + track (horizontal)  
+      • Vertical rail (set `orientation: vertical`)  
+      • Tick marks every `step` when `showTicks` true
+    constraints:
+      dualRange : false
+      precision : 0-4
+    layoutHints: [layout.wizard.pdp.v1, layout.modal.quickadd.v1]
+
+  - variantLabel        : Dual-Range Slider
+    presentationVariant : slider-dual
+    facePlateTokenPrefix: token.numericSliderDual
+    userCan: |
+      Drag two thumbs to choose a low/high range; arrow keys move the
+      focused thumb.  Input fields appear if enabled.
+    customInputs:
+      [min, max, step, precision, dualRange, defaultLow, defaultHigh,
+       required, showTicks, showInputField, orientation, canonicalUnit]
+    coversTheseLooks: |
+      • Twin thumbs with shaded selection band  
+      • Tick marks optional
+    constraints:
+      dualRange : true
+      precision : 0-2
+    layoutHints: [layout.tabs.accordion.toggle.v1]
+
+  - variantLabel        : Price-Range Slider
+    presentationVariant : slider-price
+    facePlateTokenPrefix: token.numericSliderPrice
+    userCan: |
+      Select a price floor/ceiling; values display with currency prefix.
+    customInputs:
+      [min, max, step, precision, dualRange, defaultLow, defaultHigh,
+       required, showTicks, showInputField, orientation, canonicalUnit]
+    coversTheseLooks: |
+      • Currency labels inside thumbs  
+      • Input fields always shown beneath track
+    constraints:
+      dualRange     : true
+      canonicalUnit : currency
+      precision     : 2
+    layoutHints: [layout.sitekit.bundle.v1]
+
+  - variantLabel        : Weight Slider
+    presentationVariant : slider-weight
+    facePlateTokenPrefix: token.numericSliderWeight
+    userCan: |
+      Drag to set a single weight value; thumb shows the unit (e.g. “kg”).
+    customInputs:
+      [min, max, step, precision, defaultLow, required,
+       showTicks, showInputField, orientation, canonicalUnit]
+    coversTheseLooks: |
+      • Large thumb with unit suffix  
+      • Optional vertical orientation
+    constraints:
+      dualRange     : false
+      canonicalUnit : mass
+      precision     : 1
+    layoutHints: [layout.modal.lightbox.v1]
+
+# ────────────────────────────────────────────────
+# Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

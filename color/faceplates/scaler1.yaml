@@ -1,0 +1,90 @@
+# =========================
+#  color.gradient.v1.yaml
+# =========================
+id              : color.gradient.v1
+humanLabel      : Gradient / Palette Builder
+category        : COLOR
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1          # may be used as an add-on
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 280
+  breakpointBehaviour : reflow             # reflow | stack
+
+perfConstraints:
+  maxStops            : 12                 # keep UI performant
+
+eventPayload:
+  onGradientChanged   : { stops:[{hex,pos%}], direction:string }
+
+externalFragments:
+  - color.gradient.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Linear Gradient Dial
+    presentationVariant : gradient-linear
+    facePlateTokenPrefix: token.gradientLinear
+    userCan: |
+      Add 2-12 colour stops on a circular dial; drag stops or type exact
+      “pos %”.  Adjust angle via knob or numeric input.
+    customInputs:
+      [gradientKind, minStops, maxStops, defaultStops,
+       direction, allowAlpha]
+    coversTheseLooks: |
+      • Dial with draggable thumb indicators  
+      • Numeric angle input + 4-way arrow presets
+    constraints:
+      gradientKind : linear
+      minStops     : 2
+      maxStops     : 12
+    layoutHints: [layout.modal.quickadd.v1]
+
+  - variantLabel        : Radial Gradient Dial
+    presentationVariant : gradient-radial
+    facePlateTokenPrefix: token.gradientRadial
+    userCan: |
+      Add 2-12 colour stops; inner-to-outer radius control replaces angle.
+    customInputs:
+      [gradientKind, minStops, maxStops, defaultStops,
+       direction, allowAlpha]
+    coversTheseLooks: |
+      • Concentric preview ring  
+      • Radius slider instead of angle dial
+    constraints:
+      gradientKind : radial
+      minStops     : 2
+      maxStops     : 12
+    layoutHints: [layout.modal.quickadd.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A  (content later)
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

@@ -1,0 +1,63 @@
+# =========================
+#  text.array.v1.yaml
+# =========================
+id              : text.array.v1
+humanLabel      : Tag Array
+category        : TEXT
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+layoutTokens:
+  minWidthPx          : 240
+  breakpointBehaviour : reflow        # reflow | wrap | scroll
+
+perfConstraints:
+  maxItems            : 50            # avoid virtual-scroll until Pass B
+  maxDOMNodes         : 150
+
+eventPayload:
+  onTagsChanged : { values: string[] }
+
+externalFragments:
+  - text.array.v1.a11y_i18n.yml
+
+faceplates:
+
+  - variantLabel        : Chip / Tag Multi-Select
+    presentationVariant : tags-chips
+    facePlateTokenPrefix: token.tagArray
+    userCan: |
+      Add or remove short text tags.
+      Autocomplete list appears after typing, or pick existing tags by click.
+    customInputs:
+      [minItems, maxItems, itemMaxLength, unique,
+       delimiter, defaultValues, required]
+    coversTheseLooks: |
+      • Filled chips with “×” remove icon  
+      • Outlined chips (compact)  
+      • Free-type or list-restricted tags
+    constraints:
+      minItems       : 0-10
+      maxItems       : 1-50
+      itemMaxLength  : 1-32
+    layoutHints: [layout.wizard.pdp.v1, layout.accordion.lazy.v1]
+
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

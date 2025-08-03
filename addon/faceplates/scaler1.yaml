@@ -1,0 +1,104 @@
+# =========================
+#  checkbox.v1.yaml
+# =========================
+id              : checkbox.v1
+humanLabel      : Priced Checkbox / Toggle
+category        : ADDON
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1       # may live inside add-on wrapper
+
+# ── 0. Card-wide constraints ───────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 160
+  breakpointBehaviour : reflow           # reflow | stack
+
+perfConstraints:
+  maxDOMNodes : 40                       # large grids of toggles
+
+eventPayload:                            # emitted by any face-plate
+  onValueChanged : { checked: bool }
+
+externalFragments:
+  - checkbox.v1.a11y_i18n.yml
+
+# ── 1. Face-plates (variants) ──────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Checkbox
+    presentationVariant : checkbox
+    facePlateTokenPrefix: token.checkbox
+    userCan: |
+      Click a square box to toggle the add-on ON/OFF.
+      Shows price delta (`priceMinor`) when ON.
+    customInputs:
+      [priceMinor, unitFeeMinor, recurringCadence,
+       badgeText, defaultChecked, required,
+       taxClass, priceIncludesTax]
+    coversTheseLooks: |
+      • Standard left-aligned label  
+      • Price badge on the right
+    constraints:
+      priceMinor : 0-999_999
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Toggle Switch
+    presentationVariant : switch
+    facePlateTokenPrefix: token.toggleSwitch
+    userCan: |
+      Drag or tap the pill-shaped switch to enable or disable the add-on.
+      A price badge appears when enabled.
+    customInputs: *sameAsAbove
+    coversTheseLooks: |
+      • Pill switch with ON colour accent  
+      • Optional sub-label under the title
+    constraints:
+      priceMinor : 0-999_999
+    layoutHints: [layout.modal.quickadd.v1]
+
+  - variantLabel        : Yes/No Button Pair
+    presentationVariant : button-pair
+    facePlateTokenPrefix: token.yesNoPair
+    userCan: |
+      Press “Yes” to add the service, “No” to skip;
+      the Yes button reflects the add-on price.
+    customInputs: *sameAsAbove
+    coversTheseLooks: |
+      • Side-by-side buttons  
+      • Stacked on mobile
+    constraints:
+      priceMinor : 0-999_999
+    layoutHints: [layout.tabs.accordion.toggle.v1]
+
+  - variantLabel        : Add-On Toggle
+    presentationVariant : addon-toggle
+    facePlateTokenPrefix: token.addonToggle
+    userCan: |
+      One-line row with a trailing switch and price badge.
+    customInputs: *sameAsAbove
+    coversTheseLooks: |
+      • Compact list-row toggle
+    constraints:
+      priceMinor : 0-999_999
+    layoutHints: [layout.sitekit.bundle.v1]
+
+# ── 2. Buckets drafted in Pass A (content later) ───────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ── 3. Pass-B polish placeholders ─────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

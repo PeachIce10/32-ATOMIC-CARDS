@@ -1,0 +1,78 @@
+# =========================
+#  color.picker.v1.yaml
+# =========================
+id              : color.picker.v1
+humanLabel      : Color Dial
+category        : COLOR
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1          # may be inserted as add-on
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 260
+  breakpointBehaviour : reflow             # reflow | stack | fullscreen
+
+perfConstraints:
+  maxRecentSwatches   : 30                 # palette history limit
+
+eventPayload:
+  onColorChanged      : { color: string }  # emits HEX / RGB / HSL string
+
+externalFragments:
+  - color.picker.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Full-Spectrum Colour Dial
+    presentationVariant : colour-dial
+    facePlateTokenPrefix: token.colourDial
+    userCan: |
+      Drag the thumb around a 360° hue ring and inside the triangle
+      to adjust saturation/value.  Optionally tweak Alpha via slider
+      or use the eyedropper to sample any on-screen colour.
+    customInputs:
+      [colourSpace, allowAlpha, allowPaletteHistory,
+       defaultColour, required, showEyedropper,
+       formatOptions, snapToSwatchSet]
+    coversTheseLooks: |
+      • Circular hue ring + SV triangle  
+      • Inline Alpha slider (if `allowAlpha`)  
+      • Recent-swatch row (if `allowPaletteHistory`)  
+      • Eyedropper icon button
+    constraints:
+      colourSpace : [sRGB, DisplayP3, AdobeRGB, CMYK]
+      formatOptions:
+        mustPickFrom: [HEX, RGB, HSL]
+      snapToSwatchSet: [true, false]
+    layoutHints: [layout.modal.lightbox.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A (content later)
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

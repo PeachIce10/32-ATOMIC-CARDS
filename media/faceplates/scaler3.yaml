@@ -1,0 +1,77 @@
+# =========================
+#  media.model3d.v1.yaml
+# =========================
+id              : media.model3d.v1
+humanLabel      : 3-D Model Upload
+category        : MEDIA
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+layoutTokens:
+  minWidthPx          : 280
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxPreviewTri  : 250_000      # tri-count in the in-browser viewer
+  maxDOMNodes    : 150          # thumbnails + UI chrome
+
+eventPayload:
+  onModelsChanged : { urls: string[] }
+
+externalFragments:
+  - media.model3d.v1.a11y_i18n.yml
+
+faceplates:
+
+  - variantLabel        : Drag-and-Drop Upload
+    presentationVariant : dnd-standard
+    facePlateTokenPrefix: token.modelUpload
+    userCan: |
+      Drag .glb/.gltf/.obj files onto the drop-zone or click to open
+      the system file-picker; previews render after validation.
+    customInputs:
+      [allowedMimeTypes, maxFileSizeMB, maxTriangles,
+       requireManifold, units, defaultModels]
+    coversTheseLooks: |
+      • Full-width dashed zone with file-type icons  
+      • Inline progress bar + validation chips
+    constraints:
+      maxFileSizeMB : 1-500
+      maxTriangles  : 10_000-2_000_000
+    layoutHints: [layout.modal.lightbox.v1]
+
+  - variantLabel        : 360-Degree Viewer
+    presentationVariant : viewer-angle-picker
+    facePlateTokenPrefix: token.modelViewer360
+    userCan: |
+      Spin, zoom, or auto-rotate the uploaded model; angle scrubber
+      appears if multiple keyframes are present.
+    customInputs:
+      [requireManifold, units]
+    coversTheseLooks: |
+      • Scrubbable angle carousel under the canvas  
+      • Auto-rotate toggle button
+    constraints:
+      requireManifold : true      # non-manifold meshes blocked
+      units           : mm | cm | in
+    layoutHints: [layout.hero.switcher.v1]
+
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

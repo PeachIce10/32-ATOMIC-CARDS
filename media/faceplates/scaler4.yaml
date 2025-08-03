@@ -1,0 +1,82 @@
+# =========================
+#  media.videoaudio.v1.yaml
+# =========================
+id              : media.videoaudio.v1
+humanLabel      : Video / Audio Upload
+category        : MEDIA
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+layoutTokens:
+  minWidthPx          : 320
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxDurationPreview : 900        # seconds rendered in-browser
+  maxDOMNodes        : 180        # thumbnails + controls
+
+eventPayload:
+  onMediaChanged : { urls: string[] }
+
+externalFragments:
+  - media.videoaudio.v1.a11y_i18n.yml
+
+faceplates:
+
+  - variantLabel        : Drag-and-Drop Upload
+    presentationVariant : dnd-upload
+    facePlateTokenPrefix: token.mediaUpload
+    userCan: |
+      Drag supported video/audio files onto the drop-zone or click to
+      open the file-picker.  Multiple uploads if `multiple=true`;
+      progress bars show per-file validation.
+    customInputs:
+      [allowedMimeTypes, blockedExtensions, maxFileSizeMB, minFileSizeKB,
+       multiple, maxFiles, minFiles, maxDurationSec, minDurationSec,
+       maxResolution, frameRateMax, requireCaptions, requirePoster,
+       defaultVideos]
+    coversTheseLooks: |
+      • Full-width dashed area with media icons  
+      • Inline progress & file-badge list
+    constraints:
+      maxFileSizeMB : 1-5 000
+      maxDurationSec: 2-14 400
+      maxResolution : { w:3840, h:2160 }   # 4K limit
+    layoutHints: [layout.modal.lightbox.v1]
+
+  - variantLabel        : Media Viewer Selector
+    presentationVariant : viewer-selector
+    facePlateTokenPrefix: token.mediaViewer
+    userCan: |
+      Preview the uploaded video or audio, scrub timeline, pick poster
+      frame, attach caption VTT; viewer disabled until media passes
+      validation.
+    customInputs:
+      [requireCaptions, requirePoster, maxDurationSec, frameRateMax]
+    coversTheseLooks: |
+      • Responsive 16∶9 video player with scrubber  
+      • Audio waveform viewer (audio-only uploads)
+    constraints:
+      maxDurationSec : 2-14 400
+      frameRateMax   : 60
+    layoutHints: [layout.hero.switcher.v1]
+
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

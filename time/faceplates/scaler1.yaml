@@ -1,0 +1,96 @@
+# ======================
+#  time.date.v1.yaml
+# ======================
+id              : time.date.v1
+humanLabel      : Date Picker
+category        : DATE_TIME
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+layoutTokens:
+  minWidthPx          : 280
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxDOMNodes : 150
+
+eventPayload:
+  onDateSelected : { value: string }      # ISO-8601
+
+externalFragments:
+  - time.date.v1.a11y_i18n.yml
+
+faceplates:
+
+  - variantLabel        : Date Picker (Inline)
+    presentationVariant : calendar-inline
+    facePlateTokenPrefix: token.datePickerInline
+    userCan: |
+      Click a day in the full-width calendar; keyboard arrows move
+      focus; PgUp/PgDn switch months.
+    customInputs:
+      [minDate, maxDate, granularity,
+       defaultDate, required,
+       disabledWeekdays, disabledDates,
+       displayFormat, showTimezone]
+    coversTheseLooks: |
+      • Standard month grid  
+      • Week-starting Monday or Sunday
+    constraints:
+      granularity : day
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Date Picker (Dropdown)
+    presentationVariant : calendar-dropdown
+    facePlateTokenPrefix: token.datePickerDropdown
+    userCan: |
+      Click the input to open a dropdown calendar; pick a day,
+      then the dropdown closes.
+    customInputs:
+      [minDate, maxDate, granularity,
+       defaultDate, required,
+       disabledWeekdays, disabledDates,
+       displayFormat, showTimezone]
+    coversTheseLooks: |
+      • Field with calendar icon  
+      • ISO / locale display format in field
+    constraints:
+      granularity : day
+    layoutHints: [layout.modal.quickadd.v1]
+
+  - variantLabel        : Week Picker
+    presentationVariant : week-picker
+    facePlateTokenPrefix: token.weekPicker
+    userCan: |
+      Select any whole ISO week; calendar rows act as single choices.
+    customInputs:
+      [minDate, maxDate, granularity,
+       defaultDate, required,
+       disabledWeekdays, disabledDates,
+       displayFormat, showTimezone]
+    coversTheseLooks: |
+      • Calendar highlights full rows  
+      • Tooltip shows “Week 42”
+    constraints:
+      granularity : week
+    layoutHints: [layout.tabs.accordion.toggle.v1]
+
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

@@ -1,0 +1,78 @@
+# =========================
+#  time.time.v1.yaml
+# =========================
+id              : time.time.v1
+humanLabel      : Time Picker (HH:MM)
+category        : DATE_TIME
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+layoutTokens:
+  minWidthPx          : 280
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxDOMNodes : 120
+
+eventPayload:
+  onTimeChanged : { value: "HH:mm:ss" }
+
+externalFragments:
+  - time.time.v1.a11y_i18n.yml
+
+faceplates:
+
+  - variantLabel        : Time Picker (Dropdown)
+    presentationVariant : timepicker-dropdown
+    facePlateTokenPrefix: token.timePicker
+    userCan: |
+      Click or tap the field to open an hours-and-minutes dropdown.
+      Arrow keys or mouse/scroll wheel adjust the highlighted part.
+    customInputs:
+      [minTime, maxTime, stepMinutes, defaultTime,
+       required, showSeconds, displayFormat, timezone, snapToStep]
+    coversTheseLooks: |
+      • 24 h or 12 h with AM/PM  
+      • Seconds column if `showSeconds` = true  
+      • Snap to nearest step on blur
+    constraints:
+      stepMinutes : 1-60
+      displayFormat : "HH:mm" | "hh:mm a"
+    layoutHints: [layout.wizard.pdp.v1, layout.tabs.accordion.toggle.v1]
+
+  - variantLabel        : Mobile Wheel Picker
+    presentationVariant : timepicker-wheel
+    facePlateTokenPrefix: token.timeWheel
+    userCan: |
+      Drag vertical wheels for hours and minutes (and seconds, if enabled);
+      wheels snap to `stepMinutes`.  
+    customInputs:
+      [minTime, maxTime, stepMinutes, defaultTime,
+       required, showSeconds, displayFormat, timezone, snapToStep]
+    coversTheseLooks: |
+      • Native iOS / Android style rotary wheels  
+      • Haptic tick at each step
+    constraints:
+      stepMinutes : 1-15               # wheel UX degrades above 15 min steps
+      showSeconds : false              # seconds wheel not exposed on mobile
+    layoutHints: [layout.modal.quickadd.v1]
+
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

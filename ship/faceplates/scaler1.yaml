@@ -1,0 +1,103 @@
+# =========================
+#  ship.methodlist.v1.yaml
+# =========================
+id              : ship.methodlist.v1
+humanLabel      : Shipping Method List
+category        : SHIPPING
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 280
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxMethods          : 12
+  maxDOMNodes         : 150
+
+eventPayload:
+  onMethodSelected    : { id: string }
+
+externalFragments:
+  - ship.methodlist.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Radio List (Standard)
+    presentationVariant : radio-standard
+    facePlateTokenPrefix: token.methodRadio
+    userCan: |
+      View all shipping methods in a vertical list and select
+      one via a radio button.
+    customInputs:
+      [methods, defaultMethodID, showETA,
+       allowPickUpLocation, requireSignatureOption, showInsuranceOption]
+    coversTheseLooks: |
+      • Label + price + ETA on one line
+      • Optional sub-label for carrier logo
+    constraints:
+      maxMethods : 2-8
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Radio List (Compact)
+    presentationVariant : radio-compact
+    facePlateTokenPrefix: token.methodRadioCompact
+    userCan: |
+      Select a shipping method from a condensed radio list
+      optimised for mobile.
+    customInputs:
+      [methods, defaultMethodID, showETA,
+       allowPickUpLocation, requireSignatureOption, showInsuranceOption]
+    coversTheseLooks: |
+      • Two-column grid on ≥ sm screens  
+      • Single column on xs screens
+    constraints:
+      maxMethods : 2-6
+    layoutHints: [layout.sticky.quickadd.bar.v1]
+
+  - variantLabel        : Option Card Tiles
+    presentationVariant : card-tiles
+    facePlateTokenPrefix: token.methodTiles
+    userCan: |
+      Browse shipping methods as image-plus-copy cards and pick one.
+    customInputs:
+      [methods, defaultMethodID, showETA,
+       allowPickUpLocation, requireSignatureOption, showInsuranceOption]
+    coversTheseLooks: |
+      • Card with carrier logo as thumbnail  
+      • Price badge at top-right
+    constraints:
+      maxMethods : 2-4
+    layoutHints: [layout.sitekit.bundle.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B polish placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

@@ -1,0 +1,72 @@
+# =========================
+#  external.id.v1.yaml
+# =========================
+id              : external.id.v1
+humanLabel      : External ID Field
+category        : EXTERNAL
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 260
+  breakpointBehaviour : reflow            # reflow | stack
+
+perfConstraints:
+  maxLengthChars      : 64                # practical upper-bound
+
+eventPayload:
+  onValueValidated : { value:string , isValid:bool }
+
+externalFragments:
+  - external.id.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Plain Text Field
+    presentationVariant : single-line
+    facePlateTokenPrefix: token.externalId
+    userCan: |
+      Type or paste the external identifier. Field validates on blur or
+      when the **Verify** call resolves (`verifyEndpointURL`).
+    customInputs:
+      [platformCode, regexPattern, checksumAlgo,
+       verifyEndpointURL, maskDisplayPattern, required]
+    coversTheseLooks: |
+      • Plain one-line input  
+      • Optional status badge (Verified / Error)  
+      • Masked bullets after blur (`maskDisplayPattern`)
+    constraints:
+      regexPattern : ^.+$                  # any non-empty string
+    layoutHints: [layout.wizard.pdp.v1, layout.modal.quickadd.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

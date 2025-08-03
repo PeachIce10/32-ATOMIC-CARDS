@@ -1,0 +1,100 @@
+# =========================
+#  display.optioncard.v1.yaml
+# =========================
+id              : display.optioncard.v1
+humanLabel      : Option Card Selector
+category        : ADDON
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1            # can live inside add-on wrapper
+
+# ── 0. Card-wide constraints ─────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 260
+  breakpointBehaviour : reflow               # reflow | grid-stack
+
+perfConstraints:
+  maxCards      : 36                         # avoid giant grids
+  maxDOMNodes   : 300
+
+eventPayload:                                # emitted by any face-plate
+  onValueChanged : { selectedIds: string[] }
+
+externalFragments:
+  - display.optioncard.v1.a11y_i18n.yml
+
+# ── 1. Face-plates (variants) ────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Single-Select Cards
+    presentationVariant : card-single
+    facePlateTokenPrefix: token.optionCard.single
+    userCan: |
+      Click exactly **one** card tile to choose the add-on.
+      Card shows price delta (`priceDeltaMinor`) and image thumbnail.
+    customInputs:
+      [cardList, maxSelect, minSelect, defaultCardIDs,
+       required, showAsEqualHeight, orientation,
+       priceMinor, linkedProductID, linkedServiceID]
+    coversTheseLooks: |
+      • 1-row horizontal scroll  
+      • 2-col or 3-col grid
+    constraints:
+      maxSelect : 1
+      minSelect : 0-1
+      orientation: row | grid
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Multi-Select Cards
+    presentationVariant : card-multi
+    facePlateTokenPrefix: token.optionCard.multi
+    userCan: |
+      Select **multiple** card tiles (up to `maxSelect`).
+      Total add-on price equals sum of each card’s `priceDeltaMinor`
+      plus optional `priceMinor`.
+    customInputs: *sameAsAbove
+    coversTheseLooks: |
+      • Checkbox badge in corner of card  
+      • Stack-on-mobile layout
+    constraints:
+      maxSelect : 2-8
+      minSelect : 0-maxSelect
+      multiSelect: true
+    layoutHints: [layout.mixmatch.grid.v1]
+
+  - variantLabel        : Carousel Tile Selector
+    presentationVariant : card-carousel
+    facePlateTokenPrefix: token.optionCard.carousel
+    userCan: |
+      Swipe horizontally through image cards; pick one.
+      Uses **equal-height** tiles and shows sub-copy on hover.
+    customInputs: *sameAsAbove
+    coversTheseLooks: |
+      • Snap-scroll carousel with dots  
+      • Arrow buttons on desktop
+    constraints:
+      maxSelect : 1
+      orientation: row
+      showAsEqualHeight: true
+    layoutHints: [layout.carousel.parallax.v1]
+
+# ── 2. Buckets drafted in Pass A (content later) ─────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ── 3. Pass-B polish placeholders ────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

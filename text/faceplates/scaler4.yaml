@@ -1,0 +1,101 @@
+# =========================
+#  text.single.v1.yaml
+# =========================
+id              : text.single.v1
+humanLabel      : Single-Line Text
+category        : TEXT
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 240
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxCharacters       : 500
+  maxDOMNodes         : 50
+
+eventPayload:
+  onValueChanged      : { value: string }
+
+externalFragments:
+  - text.single.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Basic Text Field
+    presentationVariant : input-basic
+    facePlateTokenPrefix: token.textInputBasic
+    userCan: |
+      Type or paste any single-line string. Enforces length and
+      optional regex validation.
+    customInputs:
+      [minLength, maxLength, regexPattern, placeholder,
+       defaultValue, required, autoCapitalize, spellCheck]
+    coversTheseLooks: |
+      • Outline / filled / underline style  
+      • Placeholder or default value
+    constraints:
+      maxLength  : 0-200
+    layoutHints: [layout.wizard.pdp.v1]
+
+  - variantLabel        : Masked Pattern Input
+    presentationVariant : input-masked
+    facePlateTokenPrefix: token.textInputMasked
+    userCan: |
+      Enter text following an input mask (e.g. phone, SSN);
+      characters auto-formatted as the user types.
+    customInputs:
+      [minLength, maxLength, inputMask, placeholder,
+       defaultValue, required]
+    coversTheseLooks: |
+      • Fixed mask “(###) ###-####”  
+      • Custom pattern via `inputMask`
+    constraints:
+      inputMask : required
+    layoutHints: [layout.modal.quickadd.v1]
+
+  - variantLabel        : Search Field
+    presentationVariant : input-search
+    facePlateTokenPrefix: token.textInputSearch
+    userCan: |
+      Enter a query; pressing Enter or clicking the icon submits.
+    customInputs:
+      [placeholder, defaultValue, required, spellCheck]
+    coversTheseLooks: |
+      • Leading or trailing search icon  
+      • Clear-text “×” button
+    constraints: {}
+    layoutHints: [layout.sticky.quickadd.bar.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B polish placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

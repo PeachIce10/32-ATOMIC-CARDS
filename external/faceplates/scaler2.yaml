@@ -1,0 +1,75 @@
+# =========================
+#  external.url.v1.yaml
+# =========================
+id              : external.url.v1
+humanLabel      : External URL Field
+category        : EXTERNAL
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1    # may be nested in add-on wrapper
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:
+  minWidthPx          : 260
+  breakpointBehaviour : reflow           # reflow | stack
+
+perfConstraints:
+  maxLengthChars      : 2048             # practical browser limit
+
+eventPayload:
+  onUrlValidated : { value:string , status:"ok"|"error" }
+
+externalFragments:
+  - external.url.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Plain Text Field
+    presentationVariant : single-line
+    facePlateTokenPrefix: token.externalUrl
+    userCan: |
+      Paste or type a full URL.  Field may auto-verify via
+      `verifyEndpointURL` (optional) and mask with
+      `maskDisplayPattern` after blur.
+    customInputs:
+      [regexPattern, verifyEndpointURL, timeoutMs,
+       requireVerification, maskDisplayPattern,
+       placeholder, defaultValue, required,
+       allowedProtocols, blocklistDomains]
+    coversTheseLooks: |
+      • One-line input with optional leading protocol badge  
+      • Success / error status icon at end of field
+    constraints:
+      allowedProtocols : ["http","https"]
+      regexPattern     : ^https?://.+$
+    layoutHints: [layout.wizard.pdp.v1, layout.modal.quickadd.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link

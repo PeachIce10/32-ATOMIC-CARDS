@@ -1,0 +1,81 @@
+# =========================
+#  media.image.v1.yaml
+# =========================
+id              : media.image.v1
+humanLabel      : Image Upload
+category        : MEDIA
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1
+
+layoutTokens:
+  minWidthPx          : 260
+  breakpointBehaviour : reflow
+
+perfConstraints:
+  maxFilesDisplay     : 15
+  maxDOMNodes         : 140
+
+eventPayload:
+  onImagesChanged     : { urls: string[] }
+
+externalFragments:
+  - media.image.v1.a11y_i18n.yml
+
+faceplates:
+
+  - variantLabel        : Drag-and-Drop Zone
+    presentationVariant : dnd-standard
+    facePlateTokenPrefix: token.imageDropzone
+    userCan: |
+      Drag images onto the zone or click to open the OS file-picker;
+      thumbnails appear below. Multi-select obeys `multiple`, `maxFiles`.
+    customInputs:
+      [allowedMimeTypes, blockedExtensions, maxFileSizeMB, minFileSizeKB,
+       multiple, maxFiles, minFiles, requireAltText, requireCaption,
+       minWidthPx, maxWidthPx, minHeightPx, maxHeightPx,
+       aspectRatio, allowCrop, allowCompression,
+       derivativePolicy, defaultImages]
+    coversTheseLooks: |
+      • Full-width dashed outline  
+      • Thumbnail grid with delete and crop icons  
+      • Progress bar on upload
+    constraints:
+      maxFileSizeMB : 1-100
+      maxFiles      : 1-10
+    layoutHints: [layout.modal.lightbox.v1]
+
+  - variantLabel        : Media Viewer Selector
+    presentationVariant : viewer-selector
+    facePlateTokenPrefix: token.imageViewer
+    userCan: |
+      Browse uploaded images in a gallery; click thumbnail
+      to open zoomable viewer or crop dialog (if `allowCrop=true`).
+    customInputs:
+      [requireAltText, requireCaption, allowCrop,
+       allowCompression, derivativePolicy]
+    coversTheseLooks: |
+      • Carousel thumbnails under hero preview  
+      • Crop / rotate overlay if cropping enabled
+    constraints:
+      derivativePolicy : thumb | responsive
+    layoutHints: [layout.hero.switcher.v1]
+
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+designTokensRef : TODO_token_link
+a11yNotes       : {}
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link
