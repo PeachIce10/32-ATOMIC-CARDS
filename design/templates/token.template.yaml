@@ -1,0 +1,100 @@
+# ───────────────────────────────────────────────────────────────
+#  faceplate-tokens.template.full.yml     (one per face-plate)
+# ───────────────────────────────────────────────────────────────
+
+# 1️⃣  BASIC IDENTITY  ───────────────────────────────────────────
+variantLabel: "" # “Number Stepper – Inline”
+presentationVariant: "" # “stepper-inline”
+faceplateFamily: "" # “scalar.stepper”
+cardId: "" # e.g. numeric.scalar.v1
+
+# 2️⃣  FUNCTIONAL CONTEXT  ──────────────────────────────────────
+functionalBehaviours:
+  acceptsTyping: false
+  hasIncrementDecrement: false
+  showsUnitSuffix: optional # always | never | optional
+  minMaxHelper: none # none | inline | tooltip
+  validationStyle: inline # inline | tooltip | silent
+
+# 3️⃣  CORE PRIMITIVE TOKENS  ───────────────────────────────────
+core:
+  color: { bg: null, border: null, textPrimary: null }
+  spacing: { gapInline: null, paddingBlock: null }
+  radius: { container: null }
+  typography: { fontSize: null, fontWeight: null }
+
+# 4️⃣  STRUCTURE & LAYOUT TOKENS  ───────────────────────────────
+structure:
+  minWidthPx: null
+  iconSizePx: null
+  stackedButtons: false
+responsiveRules:
+  breakpointBehaviour: null # reflow | stack | scale
+
+# 5️⃣  STATE TOKENS  ────────────────────────────────────────────
+states:
+  default: { bg: null, border: null, text: null }
+  hover: { bg: null, border: null, icon: null }
+  focus: { border: null, shadow: null }
+  disabled: { bg: null, text: null, icon: null }
+  error: { border: null, helperText: null }
+
+# 6️⃣  ANIMATION / MOTION  ──────────────────────────────────────
+motion:
+  onChange: { durationMs: null, easing: null }
+  onError: { durationMs: null, translatePx: null }
+
+# 7️⃣  LAYOUT HINTS  ────────────────────────────────────────────
+layoutHints:
+  compatibleWrappers: [] # list of layout.* ids
+  recommendedMinColumns: 1
+  stickyOK: true
+
+# 8️⃣  PERFORMANCE / LIMITS  ────────────────────────────────────
+limits:
+  maxDOMNodes: null
+  maxBadges: null
+
+# 9️⃣  ACCESSIBILITY & I18N  ────────────────────────────────────
+accessibility:
+  ariaRole: ""
+  ariaLive: polite
+  focusOrderNote: ""
+i18n:
+  rtlFlipIcons: true
+  translatableText:
+    helperMinMax: true
+
+# 🔟  ANALYTICS / INSTRUMENTATION  ──────────────────────────────
+analyticsEvents:
+  - fieldFocused
+  - valueFinalised
+extraPayloadKeys:
+  - componentId
+  - precision
+
+# 1️⃣1️⃣  ERROR / VALIDATION VISUALS  ───────────────────────────
+errorStateSpec:
+  iconTokenPrefix: token.errorIcon
+  inlineMessage: usesHelperText # inline | tooltip
+  shakeAnimation: onError
+
+# 1️⃣2️⃣  COMPLIANCE & SECURITY  ───────────────────────────────
+complianceTags:
+  - GDPR
+  - PCI
+
+# 1️⃣3️⃣  DEPRECATION / MIGRATION  ─────────────────────────────
+deprecation:
+  deprecated: false
+  successorId: null # fill when a v2 replaces this plate
+
+# 1️⃣4️⃣  EXTERNAL REFERENCES  ─────────────────────────────────
+externalReferences:
+  figmaComponent: ""
+  designDoc: ""
+  tokenPrefix: "" # “token.numberStepper”
+
+# ───────────────────────────────────────────────────────────────
+# END TEMPLATE  — duplicate & fill for every presentationVariant
+# ───────────────────────────────────────────────────────────────

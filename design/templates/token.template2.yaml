@@ -1,0 +1,46 @@
+# Element
+variantLabel:
+presentationVariant:
+cardId:
+componentLibrary:
+
+# Components
+libraryComponents:
+  shadcn: []
+  radixPrimitives: []
+  thirdParty: []
+  customHook: []
+  optional: []          # extras like <Label>, <Tooltip>
+
+# Styles
+styleHooks:
+  tailwindClasses:
+  cssVariables:
+
+# Core
+core:
+  color:
+  spacing:
+  radius:
+  typography:
+
+# Layout
+layout:
+  minWidthPx:
+  iconSizePx:
+  stackedButtons:
+responsiveRules:
+  breakpointBehaviour:
+
+# States
+states:
+  default:
+  hover:
+  focus:
+  disabled:
+  error:
+
+# Motion
+motion:
+  onChange:
+  onError:

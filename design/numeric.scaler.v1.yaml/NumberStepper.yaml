@@ -1,0 +1,202 @@
+# ───────── Element ───────── #
+variantLabel: Number Stepper
+presentationVariant: stepper-inline
+cardId: numeric.scalar.v1
+componentLibrary: shadcn-ui
+
+# ───────── Component Library ───────── #
+libraryComponents:
+  # Core composite that *is* the Number‑Stepper (Input + Button)
+  component:
+    name: NumberStepper
+    primitives:
+      shadcn: ["<Input>", "<Button>"]
+    customizable: false # locked—can be styled but not removed
+
+  # Single‑element add‑ons the merchant may append
+  allowedElementOptions: ["<Label>", "<Tooltip>", "<Badge>"]
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    MultiSelect:
+      - key: allowedElementOptions
+        label: Add‑on elements
+        options: ["<Label>", "<Tooltip>", "<Badge>"]
+
+# ───────── CSS variables / Tailwind classes ─────── #
+styleHooks:
+  tailwindClasses: >
+    flex items-center gap-2
+    [&_input]:w-20
+    [&_button]:h-9 [&_button]:w-9
+  cssVariables:
+    --stepper-accent: theme(colors.primary.DEFAULT)
+    --stepper-radius: theme(borderRadius.md)
+    --stepper-icon-glyph-plus: "plus"
+    --stepper-icon-glyph-minus: "minus"
+    --stepper-icon-set: react-icons/fi
+  customizable: true
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    ColorPicker:
+      - key: cssVariables.--stepper-accent
+        label: Accent colour
+    Slider:
+      - key: cssVariables.--stepper-radius
+        label: Corner radius
+        meta: { min: 0, max: 24, step: 1 }
+    Textarea:
+      - key: cssVariables.--stepper-icon-set
+        label: Icon set
+        advanced: true
+    TextareaAdvanced:
+      - key: tailwindClasses
+        label: Tailwind classes
+        advanced: true
+
+# ───────── Core primitives ───────── #
+core:
+  color:
+    bg: var(--background)
+    fg: var(--foreground)
+    accent: var(--stepper-accent)
+  spacing:
+    gap: 0.5rem
+    paddingX: 0.5rem
+  radius:
+    field: var(--stepper-radius)
+  typography:
+    fontFamily: var(--font-sans)
+    fontSize: 1rem
+  customizable: true
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    ColorPicker:
+      - key: color.bg
+        label: Background colour
+      - key: color.fg
+        label: Foreground colour
+    NumberStepper:
+      - key: spacing.gap
+        label: Gap (rem)
+        meta: { min: 0, max: 2, step: 0.25 }
+      - key: typography.fontSize
+        label: Font size (rem)
+        meta: { min: 0.75, max: 2, step: 0.125 }
+    Slider:
+      - key: radius.field
+        label: Field radius
+        meta: { min: 0, max: 24, step: 1 }
+
+# ───────── Structure & layout ───────── #
+layout:
+  minWidthPx: 240
+  iconSizePx: 16
+  stackedButtons: false
+  customizable: true
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    NumberStepper:
+      - key: minWidthPx
+        label: Min width (px)
+        meta: { min: 120, max: 480, step: 8 }
+    Slider:
+      - key: iconSizePx
+        label: Icon size (px)
+        meta: { min: 12, max: 32, step: 2 }
+    Toggle:
+      - key: stackedButtons
+        label: Stack buttons vertically
+
+responsiveRules:
+  breakpointBehaviour: reflow
+
+# ───────── States ───────── #
+states:
+  default:
+    border: 1px solid var(--muted-foreground)
+  hover:
+    border: 1px solid var(--stepper-accent/70)
+  focus:
+    ring: 2px var(--stepper-accent/50)
+  disabled:
+    opacity: 0.4
+  error:
+    border: 1px solid theme(colors.destructive)
+  customizable: true
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    BorderControl:
+      - key: default.border
+        label: Default border colour
+      - key: hover.border
+        label: Hover border colour
+      - key: focus.ring
+        label: Focus ring colour
+      - key: error.border
+        label: Error border colour
+    Slider:
+      - key: disabled.opacity
+        label: Disabled opacity (%)
+        meta: { min: 0, max: 100, step: 5 }
+
+# ───────── Animation / motion ───────── #
+motion:
+  onChange:
+    transition: all 150ms ease-out
+    scaleButton: 0.96
+  onError:
+    keyframes: shake-x 0.3s ease-in-out 1
+  customizable: true
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    NumberStepper:
+      - key: onChange.transition
+        label: Transition duration (ms)
+        parse: duration
+        meta: { min: 50, max: 600, step: 10 }
+    Slider:
+      - key: onChange.scaleButton
+        label: Scale on change
+        meta: { min: 0.9, max: 1, step: 0.005 }
+    Textarea:
+      - key: onError.keyframes
+        label: Error keyframes
+        advanced: true
+
+# ───────── Custom Inputs ───────── #
+customInputs:
+  min: 0
+  max: 100
+  step: 1
+  precision: 0
+  defaultValue: 0
+  canonicalUnit: ""
+  required: false # if true, this variant is pre‑selected
+
+  # ——— Custom Inputs Panel ———
+  inputsInspector:
+    NumberInput:
+      - key: min
+        label: Minimum value
+      - key: max
+        label: Maximum value
+      - key: step
+        label: Step size
+      - key: defaultValue
+        label: Default value
+    Slider:
+      - key: precision
+        label: Precision (decimals)
+        meta: { min: 0, max: 4, step: 1 }
+    Input:
+      - key: canonicalUnit
+        label: Unit label
+    Toggle:
+      - key: required
+        label: Default‑selected variant

@@ -1,0 +1,166 @@
+# ───────── Element ───────── #
+variantLabel: Numeric Text Field
+presentationVariant: basic
+cardId: numeric.scalar.v1
+componentLibrary: shadcn-ui
+
+# ───────── Component Library ───────── #
+libraryComponents:
+  # Core composite that *is* the Numeric‑Text‑Field (single Input)
+  component:
+    name: NumericTextField
+    primitives:
+      shadcn: ["<Input>"]
+    customizable: false # locked—can be styled but not removed
+
+  # Single‑element add‑ons a merchant may append
+  allowedElementOptions: ["<Label>", "<Tooltip>", "<Badge>"]
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    MultiSelect:
+      - key: allowedElementOptions
+        label: Add‑on elements
+        options: ["<Label>", "<Tooltip>", "<Badge>"]
+
+# ───────── CSS variables / Tailwind classes ─────── #
+styleHooks:
+  tailwindClasses: >
+    w-full flex items-center gap-2 rounded-md border px-3 py-2 shadow-sm
+    focus:outline-none focus:ring-2 focus:ring-offset-2
+  cssVariables:
+    --textfield-accent: theme(colors.primary.DEFAULT)
+    --textfield-radius: theme(borderRadius.md)
+  customizable: true
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    ColorPicker:
+      - key: cssVariables.--textfield-accent
+        label: Accent colour
+    Slider:
+      - key: cssVariables.--textfield-radius
+        label: Corner radius
+        meta: { min: 0, max: 24, step: 1 }
+
+# ───────── Core primitives ───────── #
+core:
+  color:
+    bg: var(--background)
+    fg: var(--foreground)
+    accent: var(--textfield-accent)
+  spacing:
+    gap: 0.5rem
+    paddingX: 0.75rem
+  radius:
+    field: var(--textfield-radius)
+  typography:
+    fontFamily: var(--font-sans)
+    fontSize: 1rem
+  customizable: true
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    ColorPicker:
+      - key: color.bg
+        label: Background colour
+      - key: color.fg
+        label: Foreground colour
+    NumberStepper:
+      - key: spacing.gap
+        label: Gap (rem)
+        meta: { min: 0, max: 2, step: 0.25 }
+      - key: typography.fontSize
+        label: Font size (rem)
+        meta: { min: 0.75, max: 2, step: 0.125 }
+    Slider:
+      - key: radius.field
+        label: Field radius
+        meta: { min: 0, max: 24, step: 1 }
+
+# ───────── Structure & layout ───────── #
+layout:
+  minWidthPx: 240
+  customizable: true
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    NumberStepper:
+      - key: minWidthPx
+        label: Min width (px)
+        meta: { min: 120, max: 640, step: 8 }
+responsiveRules:
+  breakpointBehaviour: reflow
+
+# ───────── States ───────── #
+states:
+  default:
+    border: 1px solid var(--muted-foreground)
+  focus:
+    ring: 2px var(--textfield-accent/50)
+  error:
+    border: 1px solid theme(colors.destructive)
+  disabled:
+    opacity: 0.4
+  customizable: true
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    BorderControl:
+      - key: default.border
+        label: Default border colour
+      - key: focus.ring
+        label: Focus ring colour
+      - key: error.border
+        label: Error border colour
+    Slider:
+      - key: disabled.opacity
+        label: Disabled opacity (%)
+        meta: { min: 0, max: 100, step: 5 }
+
+# ───────── Animation / motion ───────── #
+motion:
+  onChange:
+    transition: all 150ms ease-out
+  customizable: true
+
+  # ——— Elements Panel ———
+  elementsInspector:
+    NumberStepper:
+      - key: onChange.transition
+        label: Transition duration (ms)
+        parse: duration
+        meta: { min: 50, max: 600, step: 10 }
+
+# ───────── Custom Inputs ───────── #
+customInputs:
+  min: null
+  max: null
+  step: 1
+  precision: 0
+  defaultValue: null
+  canonicalUnit: ""
+  required: false # if true, this variant is pre‑selected on product page
+
+  # ——— Custom Inputs Panel ———
+  customInputsInspector:
+    NumberStepper:
+      - key: min
+        label: Minimum value
+      - key: max
+        label: Maximum value
+      - key: step
+        label: Step increment
+    Slider:
+      - key: precision
+        label: Decimal precision
+        meta: { min: 0, max: 6, step: 1 }
+    NumberInput:
+      - key: defaultValue
+        label: Default value
+    Input:
+      - key: canonicalUnit
+        label: Unit suffix
+    Toggle:
+      - key: required
+        label: Default‑selected variant

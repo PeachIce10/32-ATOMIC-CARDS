@@ -1,0 +1,137 @@
+# =========================
+#  numeric.scalar.v1.yaml
+# =========================
+id              : numeric.scalar.v1
+humanLabel      : Scalar Number
+category        : NUMERIC
+version         : 1
+canBeWrappedBy  : addon.wrapper.v1          # may be nested in add-on wrapper
+
+# ────────────────────────────────────────────────
+# 0. Card-wide constraints
+# ────────────────────────────────────────────────
+layoutTokens:                              # every face-plate obeys these
+  minWidthPx          : 240
+  breakpointBehaviour : reflow             # reflow | stack | scaleThumbs
+
+perfConstraints:                           # overall DOM / badge limits
+  maxBadges   : 50
+  maxDOMNodes : 120
+
+eventPayload:                              # emitted by any face-plate
+  onValueChanged : { value: number[] }     # scalar sends “[n]”
+
+externalFragments:                         # a11y / i18n glued in by build-step
+  - numeric.scalar.v1.a11y_i18n.yml
+
+# ────────────────────────────────────────────────
+# 1. Face-plates (one row per variant) ─ variant-specific limits & layout hints sit *inside* the row
+# ────────────────────────────────────────────────
+faceplates:
+
+  - variantLabel        : Number Stepper
+    presentationVariant : stepper-inline
+    facePlateTokenPrefix: token.numericStepper
+    userCan: |
+      Tap or click “+ / –” buttons to change the value by `step`
+      (clamped to `min`-`max`, rounded to `precision`);
+      direct typing is also allowed.
+    customInputs:
+      [min, max, step, precision, defaultValue, canonicalUnit, required]
+    coversTheseLooks: |
+      • Buttons outside the field (inline)  
+      • Buttons stacked vertically (stacked)  
+      • Circular / square buttons; any icon glyph
+    constraints:
+      precision : 0-2
+      step      : 1-10
+    layoutHints: [layout.wizard.pdp.v1, layout.modal.quickadd.v1]
+
+  - variantLabel        : Numeric Text Field
+    presentationVariant : basic
+    facePlateTokenPrefix: token.numericInput
+    userCan: |
+      Type or paste any number between `min` and `max`;
+      auto-formats to the chosen `precision`.
+    customInputs:
+      [min, max, precision, defaultValue, canonicalUnit, required]
+    coversTheseLooks: |
+      • Plain / filled / underlined field  
+      • Unit suffix inside or outside the field
+    constraints:
+      precision : 0-4
+    layoutHints: [layout.wizard.pdp.v1, layout.tabs.accordion.toggle.v1]
+
+  - variantLabel        : Spin-Box
+    presentationVariant : stepper-embedded
+    facePlateTokenPrefix: token.numericSpinBox
+    userCan: |
+      Use tiny in-field ▲/▼ arrows to change the value, or type directly.
+    customInputs:
+      [min, max, step, precision, defaultValue, canonicalUnit, required]
+    coversTheseLooks: |
+      • In-field arrow spinners (desktop style)  
+      • Hover-only arrows
+    constraints:
+      precision : 1-2            # forbid precision 0 for this face-plate
+      step      : 1-10
+    layoutHints: [layout.modal.lightbox.v1]
+
+  - variantLabel        : Inline Quantity Badges
+    presentationVariant : badge-list
+    facePlateTokenPrefix: token.numericBadge
+    userCan: |
+      Click a badge labelled “1, 2, 3 …”; that label *is* the value.
+    customInputs:
+      [allowedValues, defaultValue, required]   # step/precision forced below
+    coversTheseLooks: |
+      • Pill chips (single-select)  
+      • Tag chips (multi-select; restrict via `maxValues`)
+    constraints:
+      allowedValues : 1-20
+      force:
+        step      : 1
+        precision : 0
+    layoutHints: [layout.mixmatch.grid.v1, layout.sticky.quickadd.bar.v1]
+
+  - variantLabel        : Inline Quantity-Stepper (Dropdown)
+    presentationVariant : dropdown-stepper
+    facePlateTokenPrefix: token.numericDropdownStepper
+    userCan: |
+      Open the dropdown row, use its “+ / –” buttons to set quantity
+      before closing the menu.
+    customInputs:
+      [min, max, step, precision, defaultValue, canonicalUnit, required]
+    coversTheseLooks: |
+      • Grey inline stepper shown on row focus  
+      • Current value displayed as a badge in the row label
+    constraints:
+      precision : 0-2
+      step      : 1-10
+    layoutHints: [layout.sitekit.bundle.v1]
+
+# ────────────────────────────────────────────────
+# 2. Buckets drafted in Pass A (content comes later)
+# ────────────────────────────────────────────────
+LAYOUT  : TODO_LATER
+RULES:
+  emits   : *BaseEmits
+  listens : *BaseListens
+ACTIONS:
+  canTrigger   : *BaseCanTrigger
+  postSaveHook : *BasePostSave
+ASSETS  : TODO_LATER
+
+CUSTOMER-UI-SNAPSHOT:
+  ref : TODO_snapshot
+
+# ────────────────────────────────────────────────
+# 3. Pass-B polish placeholders
+# ────────────────────────────────────────────────
+designTokensRef : TODO_token_link
+a11yNotes       : {}        # merged from external fragment
+analyticsEvents : []
+errorStatesRef  : TODO_error_link
+i18nNotes       : {}
+complianceTags  : []
+stateTokensRef  : TODO_state_link
